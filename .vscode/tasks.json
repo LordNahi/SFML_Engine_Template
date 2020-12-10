@@ -9,6 +9,7 @@
                 "${workspaceFolder}\\build\\game.exe",
                 "${workspaceFolder}\\src\\*.cpp",
                 "-I${workspaceFolder}\\include",
+                "-I${workspaceFolder}\\include\\screens",
                 "-ID:\\SFML-2.5.1\\include",
                 "-LD:\\SFML-2.5.1\\lib",
                 "-DSFML_STATIC",
