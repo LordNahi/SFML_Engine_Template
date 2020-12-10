@@ -1,6 +1,7 @@
 #include <sstream>
 
 #include "DefaultScreen.hpp"
+#include "MainMenuScreen.hpp"
 #include "GameConfig.hpp"
 
 #include <iostream>
@@ -38,6 +39,10 @@ namespace GameTools
 
     void DefaultScreen::Update(float dt)
     {
+        if (_clock.getElapsedTime().asSeconds() > 3)
+        {
+            _data->stateManager.AddState(StateRef(new MainMenuScreen(_data)), true);
+        }
     }
 
     void DefaultScreen::Draw(float dt)
