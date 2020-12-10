@@ -16,7 +16,11 @@ namespace GameTools
         std::cout << "Init..." << std::endl;
 
         _data->assetManager.LoadTexture("success", "res/graphics/success.png");
-        _background.setTexture(this->_data->assetManager.GetTexture("success"));
+        _defaultSprite.setTexture(this->_data->assetManager.GetTexture("success"));
+
+        const sf::FloatRect defaultBounds = _defaultSprite.getGlobalBounds();
+
+        _defaultSprite.setPosition({SCREEN_WIDTH / 2 - defaultBounds.width / 2, SCREEN_HEIGHT / 2 - defaultBounds.height / 2});
     }
 
     void DefaultScreen::HandleInput()
@@ -34,13 +38,16 @@ namespace GameTools
 
     void DefaultScreen::Update(float dt)
     {
-        std::cout << "Updating..." << std::endl;
+        if (_clock.getElapsedTime().asSeconds() > 3)
+        {
+            std::cout << "FUCK" << std::endl;
+        }
     }
 
     void DefaultScreen::Draw(float dt)
     {
         _data->window.clear(sf::Color{255, 255, 255, 255});
-        _data->window.draw(_background);
+        _data->window.draw(_defaultSprite);
         _data->window.display();
     }
 } // namespace GameTools
