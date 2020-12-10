@@ -38,10 +38,6 @@ namespace GameTools
 
     void DefaultScreen::Update(float dt)
     {
-        if (_clock.getElapsedTime().asSeconds() > 3)
-        {
-            std::cout << "FUCK" << std::endl;
-        }
     }
 
     void DefaultScreen::Draw(float dt)
