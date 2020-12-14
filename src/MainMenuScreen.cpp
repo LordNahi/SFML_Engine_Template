@@ -24,12 +24,10 @@ namespace GameTools
         _background.setTexture(this->_data->assetManager.GetTexture("background"));
 
         _title.setTexture(this->_data->assetManager.GetTexture("title"));
-        _title.setOrigin({_title.getGlobalBounds().width / 2, _title.getGlobalBounds().height / 2});
-        _title.setPosition({SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.3f});
+        _title.setPosition({SCREEN_WIDTH * 0.5f - _title.getGlobalBounds().width / 2, SCREEN_HEIGHT * 0.3f});
 
         _playButton.setTexture(this->_data->assetManager.GetTexture("playButton"));
-        _playButton.setOrigin({_playButton.getGlobalBounds().width / 2, _playButton.getGlobalBounds().height / 2});
-        _playButton.setPosition({SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f});
+        _playButton.setPosition({SCREEN_WIDTH * 0.5f - _playButton.getGlobalBounds().width / 2, SCREEN_HEIGHT * 0.5f});
     }
 
     void MainMenuScreen::HandleInput()
@@ -41,6 +39,12 @@ namespace GameTools
             if (sf::Event::Closed == event.type)
             {
                 _data->window.close();
+            }
+
+            if (_data->InputManager.IsSpriteClicked(_playButton, sf::Mouse::Left, _data->window))
+            {
+                _clickCount++;
+                std::cout << "You have clicked the button " << _clickCount << " times!" << std::endl;
             }
         }
     }

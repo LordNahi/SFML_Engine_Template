@@ -20,6 +20,8 @@ namespace GameTools
     private:
         GameDataRef _data;
 
+        int _clickCount = 0;
+
         sf::Sprite _background;
         sf::Sprite _title;
         sf::Sprite _playButton;
