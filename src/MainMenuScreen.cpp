@@ -1,6 +1,7 @@
 #include <sstream>
 
 #include "MainMenuScreen.hpp"
+#include "GameOverScreen.hpp"
 #include "GameConfig.hpp"
 
 #include <iostream>
@@ -43,8 +44,8 @@ namespace GameTools
 
             if (_data->InputManager.IsSpriteClicked(_playButton, sf::Mouse::Left, _data->window))
             {
-                _clickCount++;
-                std::cout << "You have clicked the button " << _clickCount << " times!" << std::endl;
+                // _data->stateManager.AddState(StateRef(new GameScreen(_data)), true);
+                _data->stateManager.AddState(StateRef(new GameOverScreen(_data)), true);
             }
         }
     }

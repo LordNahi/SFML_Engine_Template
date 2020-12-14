@@ -7,10 +7,10 @@
 
 namespace GameTools
 {
-    class MainMenuScreen : public State
+    class GameOverScreen : public State
     {
     public:
-        MainMenuScreen(GameDataRef data);
+        GameOverScreen(GameDataRef data);
 
         void Init();
         void HandleInput();
@@ -21,7 +21,5 @@ namespace GameTools
         GameDataRef _data;
 
         sf::Sprite _background;
-        sf::Sprite _title;
-        sf::Sprite _playButton;
     };
 } // namespace GameTools
