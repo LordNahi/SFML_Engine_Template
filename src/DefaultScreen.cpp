@@ -14,7 +14,7 @@ namespace GameTools
 
     void DefaultScreen::Init()
     {
-        std::cout << "Init..." << std::endl;
+        std::cout << "Init Default..." << std::endl;
 
         _data->assetManager.LoadTexture("success", "res/graphics/success.png");
         _defaultSprite.setTexture(this->_data->assetManager.GetTexture("success"));

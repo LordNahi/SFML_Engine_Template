@@ -4,11 +4,11 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
+#include "GameConfig.hpp"
 #include "StateManager.hpp"
-#include "Assetmanager.hpp"
+#include "AssetManager.hpp"
 #include "InputManager.hpp"
-
-#define TARGET_FRAME_RATE 60.0f
+#include "TimingManager.hpp"
 
 namespace GameTools
 {
@@ -17,10 +17,11 @@ namespace GameTools
         sf::RenderWindow window;
         StateManager stateManager;
         AssetManager assetManager;
-        InputManager InputManager;
+        InputManager inputManager;
+        TimingManager timingManager;
     };
 
-    typedef std::shared_ptr<GameData> GameDataRef;
+    using GameDataRef = std::shared_ptr<GameData>;
 
     class Game
     {
@@ -28,7 +29,7 @@ namespace GameTools
         Game(int width, int height, std::string title);
 
     private:
-        const float dt = 1.0f / TARGET_FRAME_RATE;
+        const float dt = 1.0f / TARGET_FPS;
         sf::Clock _clock;
 
         GameDataRef _data = std::make_shared<GameData>();

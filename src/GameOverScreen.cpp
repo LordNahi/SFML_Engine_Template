@@ -13,7 +13,7 @@ namespace GameTools
 
     void GameOverScreen::Init()
     {
-        std::cout << "Init..." << std::endl;
+        std::cout << "Init GameOver..." << std::endl;
 
         // Load Assets ...
         _data->assetManager.LoadTexture("gameOverBackground", "res/graphics/bg.png");

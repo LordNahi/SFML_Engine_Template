@@ -12,9 +12,6 @@ namespace GameTools
     class StateManager
     {
     public:
-        StateManager() {}
-        ~StateManager() {}
-
         void AddState(StateRef newState, bool isReplacing = true);
         void RemoveState();
         void ProcessStateChanges();

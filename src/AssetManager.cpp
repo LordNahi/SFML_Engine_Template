@@ -1,7 +1,11 @@
+#include <iostream>
+
 #include "AssetManager.hpp"
 
 namespace GameTools
 {
+    // TODO: Create a default asset to return for each asset type...
+
     void AssetManager::LoadTexture(std::string name, std::string filePath)
     {
         sf::Texture tex;
@@ -24,6 +28,7 @@ namespace GameTools
         if (fnt.loadFromFile(filePath))
         {
             this->_fonts[name] = fnt;
+            std::cout << "Font Loaded Successfully!" << std::endl;
         }
     }
 

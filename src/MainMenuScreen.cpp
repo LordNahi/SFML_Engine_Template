@@ -1,7 +1,7 @@
 #include <sstream>
 
 #include "MainMenuScreen.hpp"
-#include "GameOverScreen.hpp"
+#include "GameScreen.hpp"
 #include "GameConfig.hpp"
 
 #include <iostream>
@@ -14,7 +14,7 @@ namespace GameTools
 
     void MainMenuScreen::Init()
     {
-        std::cout << "Init..." << std::endl;
+        std::cout << "Init MainMenu..." << std::endl;
 
         // Load Assets ...
         _data->assetManager.LoadTexture("background", "res/graphics/bg.png");
@@ -42,10 +42,9 @@ namespace GameTools
                 _data->window.close();
             }
 
-            if (_data->InputManager.IsSpriteClicked(_playButton, sf::Mouse::Left, _data->window))
+            if (_data->inputManager.IsSpriteClicked(_playButton, sf::Mouse::Left, _data->window))
             {
-                // _data->stateManager.AddState(StateRef(new GameScreen(_data)), true);
-                _data->stateManager.AddState(StateRef(new GameOverScreen(_data)), true);
+                _data->stateManager.AddState(StateRef(new GameScreen(_data)), true);
             }
         }
     }

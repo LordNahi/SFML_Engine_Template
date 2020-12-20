@@ -13,6 +13,7 @@
                 "-ID:\\SFML-2.5.1\\include",
                 "-LD:\\SFML-2.5.1\\lib",
                 "-DSFML_STATIC",
+                "-lpthread",
                 "-lopengl32",
                 "-lfreetype",
                 "-lwinmm",

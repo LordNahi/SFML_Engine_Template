@@ -1,16 +1,19 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <memory>
 
 #include "State.hpp"
-#include "Game.hpp"
+#include "PipeManager.hpp"
+
+struct GameData;
 
 namespace GameTools
 {
     class GameScreen : public State
     {
     public:
-        GameScreen(GameDataRef data);
+        GameScreen(std::shared_ptr<GameData> data);
 
         void Init();
         void HandleInput();
@@ -18,8 +21,14 @@ namespace GameTools
         void Draw(float dt);
 
     private:
-        GameDataRef _data;
-
+        std::shared_ptr<GameData> _data;
         sf::Sprite _background;
+
+        //Debuggin ...
+        bool isDebugging = false;
+        sf::Text debugText;
+        std::string debugValue;
+
+        PipeManager pipeManager;
     };
 } // namespace GameTools
