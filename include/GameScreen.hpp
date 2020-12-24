@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "State.hpp"
+#include "Pepe.hpp"
 #include "PipeManager.hpp"
 
 struct GameData;
@@ -23,6 +24,7 @@ namespace GameTools
     private:
         std::shared_ptr<GameData> _data;
         sf::Sprite _background;
+        Pepe pepe;
 
         //Debuggin ...
         bool isDebugging = false;

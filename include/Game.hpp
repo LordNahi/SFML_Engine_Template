@@ -29,7 +29,7 @@ namespace GameTools
         Game(int width, int height, std::string title);
 
     private:
-        const float dt = 1.0f / TARGET_FPS;
+        const double dt = 1000 / TARGET_FPS;
         sf::Clock _clock;
 
         GameDataRef _data = std::make_shared<GameData>();

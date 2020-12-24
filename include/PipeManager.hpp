@@ -19,6 +19,9 @@ namespace GameTools
         void SpawnPipe();
         void Update(float dt);
         void Draw(float dt);
+        void Reset();
+        bool IsColliding(sf::Sprite sprite);
+        bool GetIsRunning();
 
     private:
         sf::Clock _clock;

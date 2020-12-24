@@ -16,31 +16,36 @@ namespace GameTools
 
     void Game::Run()
     {
-        float newTime, frameTime, interpolation;
+        int frameTime, currentTime, interpolation;
 
-        float currentTime = _clock.getElapsedTime().asMilliseconds();
-        float accumulator = 0.0f;
+        int previousTime = _clock.getElapsedTime().asMilliseconds();
+        int accumulator = 0;
 
         while (_data->window.isOpen())
         {
             _data->stateManager.ProcessStateChanges();
 
-            newTime = _clock.getElapsedTime().asMilliseconds();
-            frameTime = newTime - currentTime;
+            currentTime = _clock.getElapsedTime().asMilliseconds();
+            frameTime = currentTime - previousTime;
 
-            // This is limiting the game from spending too long
-            // running in the input/update section ...
-            if (frameTime > 0.25f)
+            /**
+             * Here we clamp the max frame time (milliseconds) to prevent slow PCs
+             * spending too long in the Update loop. We will need to save time for
+             * the update loop ...
+             **/
+            const int maxFrameTime = 250;
+            if (frameTime > maxFrameTime)
             {
-                frameTime = 0.25f;
+                frameTime = maxFrameTime;
             }
 
-            currentTime = newTime;
+            // previousTime reset
+            previousTime = currentTime;
             accumulator += frameTime;
 
+            // Update loop ...
             while (accumulator >= dt)
             {
-                // Input/Update operations go here ...
                 _data->stateManager.GetActiveState()->HandleInput();
                 _data->stateManager.GetActiveState()->Update(dt);
 
@@ -49,7 +54,6 @@ namespace GameTools
 
             // Interpolation is calculated to be used in "Far Seeing", essentially
             // used to make accurate calculation of where to draw something moving.
-            //
             //
             // My interpretation from https://bell0bytes.eu/the-game-loop/
             //

@@ -25,7 +25,8 @@ namespace GameTools
         isRunning = true;
 
         // Pipe Spawn Loop ...
-        _data->timingManager.CallDelay([this]() { SpawnPipe(); }, 1000, true);
+        int spawnFrequency = 2000;
+        _data->timingManager.CallDelay([this]() { SpawnPipe(); }, spawnFrequency, true);
     }
 
     void PipeManager::Stop()
@@ -72,5 +73,33 @@ namespace GameTools
         }
 
         std::cout << "Failed to spawn pipe ..." << std::endl;
+    }
+
+    void PipeManager::Reset()
+    {
+        isRunning = false;
+
+        for (auto &pipe : pipes)
+        {
+            pipe.Kill();
+        }
+    }
+
+    bool PipeManager::GetIsRunning()
+    {
+        return isRunning;
+    }
+
+    bool PipeManager::IsColliding(sf::Sprite sprite)
+    {
+        for (auto &pipe : pipes)
+        {
+            if (pipe.IsColliding(sprite))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 } // namespace GameTools

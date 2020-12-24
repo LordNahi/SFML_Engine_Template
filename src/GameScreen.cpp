@@ -19,6 +19,7 @@ namespace GameTools
         // Load Assets ...
         _data->assetManager.LoadTexture("gameBackground", "res/graphics/bg.png");
         _data->assetManager.LoadTexture("pipe", "res/graphics/pipe.png");
+        _data->assetManager.LoadTexture("pepe", "res/graphics/pepe.png");
         _data->assetManager.LoadFont("welbut", "res/fonts/Welbut.ttf");
 
         // Create Background sprite ...
@@ -26,7 +27,9 @@ namespace GameTools
 
         // Create Pipe Manager ...
         pipeManager = PipeManager{_data};
-        pipeManager.Start();
+
+        // Create Pepe ...
+        pepe = Pepe{_data};
 
         // Create Debug Text...
         debugText.setFont(_data->assetManager.GetFont("welbut"));
@@ -46,12 +49,32 @@ namespace GameTools
             {
                 _data->window.close();
             }
+
+            if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::Space)
+                {
+                    if (!pipeManager.GetIsRunning())
+                        pipeManager.Start();
+
+                    pepe.Flap();
+                }
+            }
         }
     }
 
     void GameScreen::Update(float dt)
     {
         pipeManager.Update(dt);
+        pepe.Update(dt);
+
+        if (pipeManager.IsColliding(pepe))
+        {
+            std::cout << "COLLIDING" << std::endl;
+
+            pipeManager.Reset();
+            pepe.Reset();
+        }
     }
 
     void GameScreen::Draw(float dt)
@@ -59,6 +82,7 @@ namespace GameTools
         _data->window.clear(sf::Color{255, 255, 255, 255});
 
         _data->window.draw(_background);
+        _data->window.draw(pepe);
         pipeManager.Draw(dt);
 
         if (isDebugging)
