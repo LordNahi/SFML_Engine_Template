@@ -31,7 +31,7 @@ namespace GameTools
             /**
              * Here we clamp the max frame time (milliseconds) to prevent slow PCs
              * spending too long in the Update loop. We will need to save time for
-             * the update loop ...
+             * the drawing phase ...
              **/
             const int maxFrameTime = 250;
             if (frameTime > maxFrameTime)
