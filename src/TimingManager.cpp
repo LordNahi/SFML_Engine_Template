@@ -2,12 +2,12 @@
 
 namespace GameTools
 {
-    void TimingManager::CallDelay(std::function<void()> func, unsigned int interval, bool repeat)
+    void TimingManager::CallDelay(std::function<void()> func, unsigned int interval, bool &isRepeatingParam)
     {
-        std::thread([func, interval, repeat]() {
-            if (repeat)
+        std::thread([func, interval](bool &isRepeating) {
+            if (isRepeating)
             {
-                while (true)
+                while (isRepeating)
                 {
                     std::this_thread::sleep_for(std::chrono::milliseconds(interval));
                     func();
@@ -18,6 +18,8 @@ namespace GameTools
                 std::this_thread::sleep_for(std::chrono::milliseconds(interval));
                 func();
             }
-        }).detach();
+        },
+                    std::ref(isRepeatingParam))
+            .detach();
     }
 } // namespace GameTools

@@ -26,12 +26,16 @@ namespace GameTools
 
         // Pipe Spawn Loop ...
         int spawnFrequency = 2000;
-        _data->timingManager.CallDelay([this]() { SpawnPipe(); }, spawnFrequency, true);
+        _data->timingManager.CallDelay([this]() { SpawnPipe(); }, spawnFrequency, isRunning);
+
+        std::cout << "Pipe Manager started..." << std::endl;
     }
 
     void PipeManager::Stop()
     {
         isRunning = false;
+
+        std::cout << "Pipe Manager stopped." << std::endl;
     }
 
     void PipeManager::Update(float dt)
@@ -77,7 +81,7 @@ namespace GameTools
 
     void PipeManager::Reset()
     {
-        isRunning = false;
+        Stop();
 
         for (auto &pipe : pipes)
         {
