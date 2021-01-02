@@ -7,7 +7,7 @@ namespace GameTools
     Pepe::Pepe(GameDataRef data) : _data(data)
     {
         setTexture(_data->assetManager.GetTexture("pepe"));
-        scale(0.7, 0.7);
+        setOrigin(getGlobalBounds().width / 2, getGlobalBounds().height / 2);
         Reset();
     }
 
@@ -22,11 +22,21 @@ namespace GameTools
                 fallSpeed = fallSpeedMax;
             }
 
+            // Clamp rotation ...
+            const auto currentRot = getRotation();
+            const auto newRot = currentRot + 1;
+            if (fallSpeed < 0)
+            {
+                setRotation(rotationMin);
+            }
+            else
+            {
+                currentRot > rotationMax ? setRotation(rotationMax) : setRotation(newRot);
+                currentRot < rotationMin ? setRotation(rotationMin) : setRotation(newRot);
+            }
+
             auto const pos = getPosition();
-
             setPosition(pos.x, pos.y + fallSpeed);
-
-            std::cout << fallSpeed << std::endl;
         }
     }
 

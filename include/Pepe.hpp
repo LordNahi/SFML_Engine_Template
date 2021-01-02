@@ -20,6 +20,8 @@ namespace GameTools
         float jumpGain = 10.0f;
         float fallSpeed = 0.0f;
         float fallSpeedMax = 10.0f;
+        float rotationMin = -25.0f;
+        float rotationMax = 25.0f;
 
         GameDataRef _data;
     };
