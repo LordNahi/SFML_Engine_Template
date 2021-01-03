@@ -8,7 +8,7 @@
 #include "StateManager.hpp"
 #include "AssetManager.hpp"
 #include "InputManager.hpp"
-#include "TimingManager.hpp"
+#include "CallbackManager.hpp"
 
 namespace GameTools
 {
@@ -18,7 +18,7 @@ namespace GameTools
         StateManager stateManager;
         AssetManager assetManager;
         InputManager inputManager;
-        TimingManager timingManager;
+        CallbackManager callbackManager;
     };
 
     using GameDataRef = std::shared_ptr<GameData>;
