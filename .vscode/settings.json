@@ -51,6 +51,9 @@
         "thread": "cpp",
         "chrono": "cpp",
         "ratio": "cpp",
-        "stop_token": "cpp"
+        "stop_token": "cpp",
+        "future": "cpp",
+        "condition_variable": "cpp",
+        "mutex": "cpp"
     }
 }

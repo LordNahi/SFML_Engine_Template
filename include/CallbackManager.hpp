@@ -3,6 +3,7 @@
 #include <thread>
 #include <functional>
 #include <string>
+#include <future>
 #include <map>
 
 namespace GameTools
@@ -14,6 +15,6 @@ namespace GameTools
         void Cancel(std::string name);
 
     private:
-        std::unordered_map<std::string, std::thread::native_handle_type> callbackMap;
+        std::map<std::string, std::promise<void>> callbackMap;
     };
 } // namespace GameTools

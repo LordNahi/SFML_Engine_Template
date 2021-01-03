@@ -5,12 +5,11 @@ namespace GameTools
     void CallbackManager::Register(std::string name, std::function<void()> func, unsigned int interval, bool isRepeating)
     {
         // Call once, and if `isRepeating` is true, repeat...
-        const auto delayedCallback = [isRepeating, func, interval]() {
-            do
+        const auto delayedCallback = [isRepeating, func, interval](std::future<void> signalFuture) {
+            while (signalFuture.wait_for(std::chrono::milliseconds(interval)) == std::future_status::timeout)
             {
-                std::this_thread::sleep_for(std::chrono::milliseconds(interval));
                 func();
-            } while (isRepeating);
+            }
         };
 
         /**
@@ -21,19 +20,13 @@ namespace GameTools
          */
 
         std::thread callbackThread;
-        callbackThread = std::thread(delayedCallback);
+        std::promise<void> signalExit;
+        std::future<void> signalFuture = signalExit.get_future();
 
-        /**
-         * NOTE: Supposedly the most elegant way for cancelling threads is to call the 
-         * native thread terminator, and to do so, you need to store a reference to the
-         * native thread handle, we store it in a map to be used for termination ...
-         * 
-         * Based on:
-         * https://www.bo-yang.net/2017/11/19/cpp-kill-detached-thread
-         */
-
-        callbackMap[name] = callbackThread.native_handle();
+        callbackThread = std::thread(delayedCallback, std::move(signalFuture));
         callbackThread.detach();
+
+        callbackMap[name] = std::move(signalExit);
     }
 
     void CallbackManager::Cancel(std::string name)
@@ -44,7 +37,7 @@ namespace GameTools
         {
             // Map is a collection of pairs, we found a pair that
             // contains your callback, we access it with `second` ...
-            pthread_cancel(item->second);
+            item->second.set_value();
             callbackMap.erase(item);
         }
     }
