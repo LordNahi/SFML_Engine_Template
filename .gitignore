@@ -1,1 +1,4 @@
 build/
+
+# IDE Specific
+.vscode/
