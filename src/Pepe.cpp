@@ -44,6 +44,7 @@ namespace GameTools
     {
         isActive = false;
         fallSpeed = 0.0f;
+        setRotation(0);
 
         setPosition(
             SCREEN_WIDTH / 2 - getTextureRect().width / 2,
