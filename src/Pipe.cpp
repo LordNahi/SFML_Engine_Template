@@ -34,7 +34,7 @@ namespace GameTools
 
         isActive = false;
 
-        auto const resetPos = sf::Vector2i{SCREEN_WIDTH, Util::Math::randRange(SCREEN_HEIGHT * 0.3, SCREEN_HEIGHT * 0.7)};
+        auto const resetPos = sf::Vector2f{SCREEN_WIDTH, Util::Math::randRange(SCREEN_HEIGHT * 0.3f, SCREEN_HEIGHT * 0.7f)};
 
         position.x = resetPos.x;
         position.y = resetPos.y;
