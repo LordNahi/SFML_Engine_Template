@@ -20,6 +20,7 @@ namespace GameTools
         void Update(float dt);
         void Draw(float dt);
         void Reset();
+        void OnScore(std::function<void()> func);
         bool IsColliding(sf::Sprite sprite);
         bool GetIsRunning();
 
@@ -27,6 +28,7 @@ namespace GameTools
         sf::Clock _clock;
         std::shared_ptr<GameData> _data;
         std::vector<Pipe> pipes;
+        std::function<void()> handleScore;
 
         int pipePoolSize = 5;
         bool isRunning = false;

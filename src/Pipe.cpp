@@ -33,6 +33,7 @@ namespace GameTools
         std::cout << "Pipe Killed..." << std::endl;
 
         isActive = false;
+        hasPassed = false;
 
         auto const resetPos = sf::Vector2f{SCREEN_WIDTH, Util::Math::randRange(SCREEN_HEIGHT * 0.3f, SCREEN_HEIGHT * 0.7f)};
 

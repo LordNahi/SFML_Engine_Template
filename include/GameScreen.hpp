@@ -25,11 +25,8 @@ namespace GameTools
         std::shared_ptr<GameData> _data;
         sf::Sprite _background;
         Pepe pepe;
-
-        //Debuggin ...
-        bool isDebugging = false;
-        sf::Text debugText;
-        std::string debugValue;
+        sf::Text scoreText;
+        int score = 0;
 
         PipeManager pipeManager;
     };

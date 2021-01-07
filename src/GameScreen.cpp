@@ -5,6 +5,7 @@
 #include "GameConfig.hpp"
 
 #include <iostream>
+#include <string>
 
 namespace GameTools
 {
@@ -27,16 +28,17 @@ namespace GameTools
 
         // Create Pipe Manager ...
         pipeManager = PipeManager{_data};
+        pipeManager.OnScore([this]() { this->score += 1; });
 
         // Create Pepe ...
         pepe = Pepe{_data};
 
         // Create Debug Text...
-        debugText.setFont(_data->assetManager.GetFont("welbut"));
-        debugText.setString("Debug Text:");
-        debugText.setCharacterSize(32);
-        debugText.setFillColor(sf::Color::White);
-        debugText.setPosition(12, 12);
+        scoreText.setFont(_data->assetManager.GetFont("welbut"));
+        scoreText.setString("0");
+        scoreText.setCharacterSize(32);
+        scoreText.setFillColor(sf::Color::White);
+        scoreText.setPosition(12, 12);
     }
 
     void GameScreen::HandleInput()
@@ -65,6 +67,7 @@ namespace GameTools
 
     void GameScreen::Update(float dt)
     {
+        scoreText.setString(std::to_string(score));
         pipeManager.Update(dt);
         pepe.Update(dt);
 
@@ -74,6 +77,7 @@ namespace GameTools
 
             pipeManager.Reset();
             pepe.Reset();
+            score = 0;
         }
     }
 
@@ -83,17 +87,8 @@ namespace GameTools
 
         _data->window.draw(_background);
         _data->window.draw(pepe);
+        _data->window.draw(scoreText);
         pipeManager.Draw(dt);
-
-        if (isDebugging)
-        {
-            debugValue = "Debug:\n";
-            debugValue += "DT: " + std::to_string(dt) + "\n";
-
-            debugText.setString(debugValue);
-
-            _data->window.draw(debugText);
-        }
 
         _data->window.display();
     }

@@ -41,6 +41,11 @@ namespace GameTools
         std::cout << "Pipe Manager stopped." << std::endl;
     }
 
+    void PipeManager::OnScore(std::function<void()> func)
+    {
+        handleScore = func;
+    }
+
     void PipeManager::Update(float dt)
     {
         if (isRunning)
@@ -51,6 +56,11 @@ namespace GameTools
                 if (pipe.GetIsActive())
                 {
                     pipe.Update(dt);
+                    if (pipe.GetPosition().x < SCREEN_WIDTH / 2 & !pipe.hasPassed)
+                    {
+                        pipe.hasPassed = true;
+                        handleScore();
+                    }
                 }
             }
         }

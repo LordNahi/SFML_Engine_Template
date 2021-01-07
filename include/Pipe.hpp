@@ -13,12 +13,15 @@ namespace GameTools
     public:
         Pipe(std::shared_ptr<GameData> data);
 
+        bool hasPassed = false;
+
         void Spawn();
         void Kill();
         void Destroy();
         void Update(float dt);
         void Draw();
         bool GetIsActive() const { return isActive; };
+        sf::Vector2f GetPosition() const { return position; };
         bool IsColliding(sf::Sprite sprite);
 
     private:
