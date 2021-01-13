@@ -23,3 +23,5 @@ run_conan()
 
 include_directories(include)
 add_subdirectory(src)
+
+file(COPY res DESTINATION ${CMAKE_BINARY_DIR}/src/Debug)
