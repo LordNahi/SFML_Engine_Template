@@ -21,7 +21,22 @@ include(cmake/CompilerWarnings.cmake)
 include(cmake/Conan.cmake)
 run_conan()
 
-include_directories(include)
+set(ENV{PROJECT_TITLE} template_game)
+
+add_executable($ENV{PROJECT_TITLE} "")
 add_subdirectory(src)
 
-file(COPY res DESTINATION ${CMAKE_BINARY_DIR}/src/Debug)
+target_link_libraries(
+    $ENV{PROJECT_TITLE}
+    PRIVATE project_options
+            project_warnings
+            CONAN_PKG::sfml
+)
+
+# When you decide to run multiple subdirs in your include
+# folder, call this in each CMakeLists file and try to
+# instead make it mirror the include structure ...
+target_include_directories(template_game PRIVATE include)
+
+# Move resources to build dir
+file(COPY res DESTINATION ${CMAKE_BINARY_DIR}/Debug)
