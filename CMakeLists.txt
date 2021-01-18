@@ -21,6 +21,7 @@ include(cmake/CompilerWarnings.cmake)
 include(cmake/Conan.cmake)
 run_conan()
 
+# This is probably pointless ...
 set(ENV{PROJECT_TITLE} template_game)
 
 add_executable($ENV{PROJECT_TITLE} "")
