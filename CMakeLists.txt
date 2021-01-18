@@ -37,7 +37,7 @@ target_link_libraries(
 # When you decide to run multiple subdirs in your include
 # folder, call this in each CMakeLists file and try to
 # instead make it mirror the include structure ...
-target_include_directories(template_game PRIVATE include)
+target_include_directories($ENV{PROJECT_TITLE} PRIVATE include)
 
 # Move resources to build dir
 file(COPY res DESTINATION ${CMAKE_BINARY_DIR}/Debug)
