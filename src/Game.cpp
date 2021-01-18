@@ -11,7 +11,6 @@ namespace GameTools
     {
         _data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
         _data->stateManager.AddState(StateRef(new DefaultScreen(_data)));
-        Run();
     }
 
     void Game::Run()

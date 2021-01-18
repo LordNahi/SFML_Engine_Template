@@ -27,13 +27,12 @@ namespace GameTools
     {
     public:
         Game(int width, int height, std::string title);
+        void Run();
 
     private:
         const double dt = 1000 / TARGET_FPS;
         sf::Clock _clock;
 
         GameDataRef _data = std::make_shared<GameData>();
-
-        void Run();
     };
 } // namespace GameTools
