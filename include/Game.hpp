@@ -5,10 +5,10 @@
 #include <SFML/Graphics.hpp>
 
 #include "GameConfig.hpp"
-#include "StateManager.hpp"
-#include "AssetManager.hpp"
-#include "InputManager.hpp"
-#include "CallbackManager.hpp"
+#include "Managers/StateManager.hpp"
+#include "Managers/InputManager.hpp"
+#include "Managers/AssetManager.hpp"
+#include "Managers/CallbackManager.hpp"
 
 namespace GameTools
 {

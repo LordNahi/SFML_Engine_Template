@@ -1,6 +1,6 @@
 #include <sstream>
 
-#include "GameOverScreen.hpp"
+#include "Screens/GameOverScreen.hpp"
 #include "GameConfig.hpp"
 
 #include <iostream>

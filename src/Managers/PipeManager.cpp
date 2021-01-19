@@ -7,7 +7,7 @@
 #include "Util.hpp"
 #include "GameConfig.hpp"
 #include "Game.hpp"
-#include "PipeManager.hpp"
+#include "Managers/PipeManager.hpp"
 #include "Pipe.hpp"
 
 namespace GameTools

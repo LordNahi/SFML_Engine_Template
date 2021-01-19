@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "Pipe.hpp"
+#include "Entities/Pipe.hpp"
 
 struct GameData;
 

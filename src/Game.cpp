@@ -2,8 +2,8 @@
 #include <chrono>
 #include <thread>
 
+#include "Screens/DefaultScreen.hpp"
 #include "Game.hpp"
-#include "DefaultScreen.hpp"
 
 namespace GameTools
 {

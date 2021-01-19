@@ -1,7 +1,7 @@
 #include <sstream>
 
+#include "Screens/GameScreen.hpp"
 #include "Game.hpp"
-#include "GameScreen.hpp"
 #include "GameConfig.hpp"
 
 #include <iostream>

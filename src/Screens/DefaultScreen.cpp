@@ -1,7 +1,7 @@
 #include <sstream>
 
-#include "DefaultScreen.hpp"
-#include "MainMenuScreen.hpp"
+#include "Screens/DefaultScreen.hpp"
+#include "Screens/MainMenuScreen.hpp"
 #include "GameConfig.hpp"
 
 #include <iostream>

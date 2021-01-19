@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "AssetManager.hpp"
+#include "Managers/AssetManager.hpp"
 
 namespace GameTools
 {

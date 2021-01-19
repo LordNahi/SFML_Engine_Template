@@ -4,8 +4,8 @@
 #include <memory>
 
 #include "State.hpp"
-#include "Pepe.hpp"
-#include "PipeManager.hpp"
+#include "Entities/Pepe.hpp"
+#include "Managers/PipeManager.hpp"
 
 struct GameData;
 

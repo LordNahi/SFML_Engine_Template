@@ -1,6 +1,6 @@
 #include <algorithm>
 
-#include "Pepe.hpp"
+#include "Entities/Pepe.hpp"
 
 namespace GameTools
 {
