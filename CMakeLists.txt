@@ -21,11 +21,11 @@ include(cmake/Conan.cmake)
 run_conan()
 
 # This is probably pointless ...
-add_executable(CMAKE_PROJECT_NAME "")
+add_executable(${CMAKE_PROJECT_NAME} "")
 add_subdirectory(src)
 
 target_link_libraries(
-    CMAKE_PROJECT_NAME
+    ${CMAKE_PROJECT_NAME}
     PRIVATE
         project_options
         project_warnings
@@ -40,7 +40,7 @@ list(APPEND include_list
     include/Screens
 )
 
-target_include_directories(CMAKE_PROJECT_NAME PRIVATE ${include_list})
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${include_list})
 
 # Move resources to build dir ...
 file(COPY res DESTINATION ${CMAKE_BINARY_DIR}/Debug)
