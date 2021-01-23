@@ -4,11 +4,10 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#include "GameConfig.hpp"
 #include "Managers/StateManager.hpp"
-#include "Managers/InputManager.hpp"
 #include "Managers/AssetManager.hpp"
 #include "Managers/CallbackManager.hpp"
+#include "GameConfig.hpp"
 
 namespace GameTools
 {
