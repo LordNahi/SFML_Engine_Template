@@ -2,23 +2,26 @@
 
 namespace Util::Math
 {
-    int randRange(int min, int max)
+    namespace Random
     {
-        // Will this cause a memory leak if I call this func a million times ...
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<> distrib(min, max);
+        int randRange(int min, int max)
+        {
+            // Will this cause a memory leak if I call this func a million times ...
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<> distrib(min, max);
 
-        return distrib(gen);
-    };
+            return distrib(gen);
+        };
 
-    float randRange(float min, float max)
-    {
-        // Will this cause a memory leak if I call this func a million times ...
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_real_distribution<> distrib(min, max);
+        float randRange(float min, float max)
+        {
+            // Will this cause a memory leak if I call this func a million times ...
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_real_distribution<> distrib(min, max);
 
-        return distrib(gen);
-    }
+            return distrib(gen);
+        }
+    } // namespace Random
 } // namespace Util::Math
