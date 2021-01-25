@@ -1,7 +1,6 @@
 #include <sstream>
 
 #include "Screens/DefaultScreen.hpp"
-#include "Screens/MainMenuScreen.hpp"
 #include "GameConfig.hpp"
 
 #include <iostream>
@@ -16,8 +15,8 @@ namespace CMB
     {
         std::cout << "Init Default..." << std::endl;
 
-        _data->assetManager.LoadTexture("success", "res/graphics/success.png");
-        _defaultSprite.setTexture(this->_data->assetManager.GetTexture("success"));
+        _data->assetManager.LoadTexture("default", "res/graphics/default.png");
+        _defaultSprite.setTexture(this->_data->assetManager.GetTexture("default"));
 
         const sf::FloatRect defaultBounds = _defaultSprite.getGlobalBounds();
 
@@ -39,10 +38,8 @@ namespace CMB
 
     void DefaultScreen::Update(float dt)
     {
-        if (_clock.getElapsedTime().asSeconds() > 3)
-        {
-            _data->stateManager.AddState(StateRef(new MainMenuScreen(_data)), true);
-        }
+        // Note: Example of adding a new state
+        // _data->stateManager.AddState(StateRef(new YourNewScreen(_data)), true);
     }
 
     void DefaultScreen::Draw(float dt)

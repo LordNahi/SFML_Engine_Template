@@ -16,7 +16,6 @@ namespace CMB
         sf::RenderWindow window;
         StateManager stateManager;
         AssetManager assetManager;
-        InputManager inputManager;
         CallbackManager callbackManager;
     };
 
