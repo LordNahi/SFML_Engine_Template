@@ -9,7 +9,7 @@
 #include "Managers/CallbackManager.hpp"
 #include "GameConfig.hpp"
 
-namespace GameTools
+namespace CMB
 {
     struct GameData
     {
@@ -34,4 +34,4 @@ namespace GameTools
 
         GameDataRef _data = std::make_shared<GameData>();
     };
-} // namespace GameTools
+} // namespace CMB

@@ -5,7 +5,7 @@
 
 int main()
 {
-    auto game = GameTools::Game(SCREEN_WIDTH, SCREEN_HEIGHT, TITLE);
+    auto game = CMB::Game(SCREEN_WIDTH, SCREEN_HEIGHT, TITLE);
 
     game.Run();
 

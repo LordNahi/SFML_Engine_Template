@@ -1,6 +1,6 @@
 #pragma once
 
-namespace GameTools
+namespace CMB
 {
     class State
     {
@@ -14,4 +14,4 @@ namespace GameTools
         virtual void Pause(){};
         virtual void Resume(){};
     };
-} // namespace GameTools
+} // namespace CMB

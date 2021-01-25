@@ -5,7 +5,7 @@
 #include "Screens/DefaultScreen.hpp"
 #include "Game.hpp"
 
-namespace GameTools
+namespace CMB
 {
     Game::Game(int width, int height, std::string title)
     {
@@ -64,4 +64,4 @@ namespace GameTools
             _data->stateManager.GetActiveState()->Draw(interpolation);
         }
     }
-} // namespace GameTools
+} // namespace CMB

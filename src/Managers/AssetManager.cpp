@@ -2,7 +2,7 @@
 
 #include "Managers/AssetManager.hpp"
 
-namespace GameTools
+namespace CMB
 {
     // TODO: Create a default asset to return for each asset type...
 
@@ -36,4 +36,4 @@ namespace GameTools
     {
         return this->_fonts.at(name);
     }
-} // namespace GameTools
+} // namespace CMB

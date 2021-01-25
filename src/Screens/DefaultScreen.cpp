@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-namespace GameTools
+namespace CMB
 {
     DefaultScreen::DefaultScreen(GameDataRef data) : _data(data)
     {
@@ -51,4 +51,4 @@ namespace GameTools
         _data->window.draw(_defaultSprite);
         _data->window.display();
     }
-} // namespace GameTools
+} // namespace CMB

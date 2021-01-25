@@ -4,7 +4,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-namespace GameTools
+namespace CMB
 {
     class AssetManager
     {
@@ -22,4 +22,4 @@ namespace GameTools
         std::map<std::string, sf::Texture> _textures;
         std::map<std::string, sf::Font> _fonts;
     };
-} // namespace GameTools
+} // namespace CMB

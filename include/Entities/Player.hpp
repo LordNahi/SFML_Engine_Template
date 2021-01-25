@@ -2,7 +2,7 @@
 
 #include "Game.hpp"
 
-namespace GameTools
+namespace CMB
 {
     class Player : public sf::Sprite
     {
@@ -14,4 +14,4 @@ namespace GameTools
 
         GameDataRef _data;
     };
-} // namespace GameTools
+} // namespace CMB

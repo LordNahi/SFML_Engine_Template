@@ -6,7 +6,7 @@
 #include <future>
 #include <map>
 
-namespace GameTools
+namespace CMB
 {
     class CallbackManager
     {
@@ -17,4 +17,4 @@ namespace GameTools
     private:
         std::map<std::string, std::promise<void>> callbackMap;
     };
-} // namespace GameTools
+} // namespace CMB

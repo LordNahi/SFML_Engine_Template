@@ -1,6 +1,6 @@
 #include "Managers/StateManager.hpp"
 
-namespace GameTools
+namespace CMB
 {
     void StateManager::AddState(StateRef newState, bool isReplacing)
     {
@@ -52,4 +52,4 @@ namespace GameTools
     {
         return this->_states.top();
     }
-} // namespace GameTools
+} // namespace CMB

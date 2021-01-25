@@ -5,7 +5,7 @@
 
 #include "State.hpp"
 
-namespace GameTools
+namespace CMB
 {
     typedef std::unique_ptr<State> StateRef;
 
@@ -26,4 +26,4 @@ namespace GameTools
         bool _isAdding;
         bool _isReplacing;
     };
-} // namespace GameTools
+} // namespace CMB

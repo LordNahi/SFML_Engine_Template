@@ -1,6 +1,6 @@
 #include "Managers/CallbackManager.hpp"
 
-namespace GameTools
+namespace CMB
 {
     void CallbackManager::Register(std::string name, std::function<void()> func, unsigned int interval, bool isRepeating)
     {
@@ -41,4 +41,4 @@ namespace GameTools
             callbackMap.erase(item);
         }
     }
-} // namespace GameTools
+} // namespace CMB

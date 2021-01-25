@@ -5,7 +5,7 @@
 #include "State.hpp"
 #include "Game.hpp"
 
-namespace GameTools
+namespace CMB
 {
     class DefaultScreen : public State
     {
@@ -23,4 +23,4 @@ namespace GameTools
         sf::Clock _clock;
         sf::Sprite _defaultSprite;
     };
-} // namespace GameTools
+} // namespace CMB

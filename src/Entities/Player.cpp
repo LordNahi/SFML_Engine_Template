@@ -2,7 +2,7 @@
 
 #include "Entities/Player.hpp"
 
-namespace GameTools
+namespace CMB
 {
     Player::Player(GameDataRef data) : _data(data)
     {
@@ -12,5 +12,5 @@ namespace GameTools
 
     void Player::Update(float dt)
     {
-        }
-} // namespace GameTools
+    }
+} // namespace CMB
