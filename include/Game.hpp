@@ -4,7 +4,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#include "Managers/StateManager.hpp"
+#include "Managers/ScreenManager.hpp"
 #include "Managers/AssetManager.hpp"
 #include "Managers/CallbackManager.hpp"
 #include "GameConfig.hpp"
@@ -14,7 +14,7 @@ namespace CMB
     struct GameData
     {
         sf::RenderWindow window;
-        StateManager stateManager;
+        ScreenManager screenManager;
         AssetManager assetManager;
         CallbackManager callbackManager;
     };

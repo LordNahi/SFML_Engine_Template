@@ -1,29 +1,29 @@
-#include "Managers/StateManager.hpp"
+#include "Managers/ScreenManager.hpp"
 
 namespace CMB
 {
     /**
      * Add a new state to your game.
      * 
-     * This will tell the StateManager to add a new state or "screen"
+     * This will tell the ScreenManager to add a new state or "screen"
      * to the world.
      * 
      * @param newState state or "screen" object to be used in game
      * @param isReplacing if true, the game will switch to this screen immediately
      */
-    void StateManager::AddState(StateRef newState, bool isReplacing)
+    void ScreenManager::AddState(StateRef newState, bool isReplacing)
     {
         this->_isAdding = true;
         this->_isReplacing = isReplacing;
         this->_newState = std::move(newState);
     }
 
-    void StateManager::RemoveState()
+    void ScreenManager::RemoveState()
     {
         this->_isRemoving = true;
     }
 
-    void StateManager::ProcessStateChanges()
+    void ScreenManager::ProcessStateChanges()
     {
         if (this->_isRemoving && !this->_states.empty())
         {
@@ -57,7 +57,7 @@ namespace CMB
         }
     }
 
-    StateRef &StateManager::GetActiveState()
+    StateRef &ScreenManager::GetActiveState()
     {
         return this->_states.top();
     }

@@ -1,9 +1,8 @@
 #include <sstream>
+#include <iostream>
 
 #include "Screens/DefaultScreen.hpp"
 #include "GameConfig.hpp"
-
-#include <iostream>
 
 namespace CMB
 {
@@ -16,7 +15,15 @@ namespace CMB
         std::cout << "Init Default..." << std::endl;
 
         _data->assetManager.LoadTexture("default", "res/graphics/default.png");
-        _defaultSprite.setTexture(this->_data->assetManager.GetTexture("default"));
+        _data->assetManager.LoadTexture("run_down", "res/graphics/run_down.png");
+        _data->assetManager.LoadTexture("test", "res/graphics/test.png");
+
+        _defaultSprite.setTexture(this->_data->assetManager.GetTexture("test"));
+        _defaultSprite.setScale({7, 7});
+        _defaultSprite.setSpritesheet(32, 32, 8);
+
+        _data->callbackManager.Register(
+            "changeFrame", [this]() { _defaultSprite.frameForward(); }, 500, true);
 
         const sf::FloatRect defaultBounds = _defaultSprite.getGlobalBounds();
 
@@ -44,7 +51,7 @@ namespace CMB
 
     void DefaultScreen::Draw(float dt)
     {
-        _data->window.clear(sf::Color{255, 255, 255, 255});
+        _data->window.clear(sf::Color{92, 219, 88, 255});
         _data->window.draw(_defaultSprite);
         _data->window.display();
     }

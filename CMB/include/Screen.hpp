@@ -2,7 +2,7 @@
 
 namespace CMB
 {
-    class State
+    class Screen
     {
     public:
         virtual void Init() = 0;

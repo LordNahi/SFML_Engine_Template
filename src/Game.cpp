@@ -10,7 +10,7 @@ namespace CMB
     Game::Game(int width, int height, std::string title)
     {
         _data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-        _data->stateManager.AddState(StateRef(new DefaultScreen(_data)));
+        _data->screenManager.AddState(StateRef(new DefaultScreen(_data)));
     }
 
     void Game::Run()
@@ -22,7 +22,7 @@ namespace CMB
 
         while (_data->window.isOpen())
         {
-            _data->stateManager.ProcessStateChanges();
+            _data->screenManager.ProcessStateChanges();
 
             currentTime = _clock.getElapsedTime().asMilliseconds();
             frameTime = currentTime - previousTime;
@@ -45,8 +45,8 @@ namespace CMB
             // Update loop ...
             while (accumulator >= dt)
             {
-                _data->stateManager.GetActiveState()->HandleInput();
-                _data->stateManager.GetActiveState()->Update(dt);
+                _data->screenManager.GetActiveState()->HandleInput();
+                _data->screenManager.GetActiveState()->Update(dt);
 
                 accumulator -= dt;
             }
@@ -61,7 +61,7 @@ namespace CMB
             // can instead run 500*interpolation to get more accurate rendering...
 
             interpolation = accumulator / dt;
-            _data->stateManager.GetActiveState()->Draw(interpolation);
+            _data->screenManager.GetActiveState()->Draw(interpolation);
         }
     }
 } // namespace CMB

@@ -2,12 +2,13 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "State.hpp"
+#include "Screen.hpp"
+#include "Sprite.hpp"
 #include "Game.hpp"
 
 namespace CMB
 {
-    class DefaultScreen : public State
+    class DefaultScreen : public Screen
     {
     public:
         DefaultScreen(GameDataRef data);
@@ -21,6 +22,6 @@ namespace CMB
         GameDataRef _data;
 
         sf::Clock _clock;
-        sf::Sprite _defaultSprite;
+        CMB::Sprite _defaultSprite;
     };
 } // namespace CMB

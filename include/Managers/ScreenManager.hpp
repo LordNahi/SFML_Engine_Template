@@ -3,13 +3,13 @@
 #include <memory>
 #include <stack>
 
-#include "State.hpp"
+#include "Screen.hpp"
 
 namespace CMB
 {
-    typedef std::unique_ptr<State> StateRef;
+    typedef std::unique_ptr<Screen> StateRef;
 
-    class StateManager
+    class ScreenManager
     {
     public:
         void AddState(StateRef newState, bool isReplacing = true);

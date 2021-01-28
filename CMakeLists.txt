@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
+# Set project name ...
 project(SFML_template CXX)
 
 include(cmake/StandardProjectSettings.cmake)
@@ -13,6 +14,7 @@ add_library(project_warnings INTERFACE)
 
 # Standard compiler warnings.
 include(cmake/CompilerWarnings.cmake)
+
 # TODO: Uncomment the following line and fix the issues that come up ...
 # set_project_warnings(project_warnings)
 
@@ -20,7 +22,6 @@ include(cmake/CompilerWarnings.cmake)
 include(cmake/Conan.cmake)
 run_conan()
 
-# This is probably pointless ...
 add_executable(${CMAKE_PROJECT_NAME} "")
 add_subdirectory(src)
 
@@ -32,7 +33,7 @@ target_link_libraries(
         CONAN_PKG::sfml
 )
 
-# Add include dirs ...
+# Compile list of user include dirs ...
 list(APPEND include_list
     include
     include/Entities
@@ -40,7 +41,11 @@ list(APPEND include_list
     include/Screens
 )
 
+# Add user include list ...
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${include_list})
+
+# Add CMB classes ...
+add_subdirectory(CMB)
 
 # Move resources to build dir ...
 file(COPY res DESTINATION ${CMAKE_BINARY_DIR}/Debug)
