@@ -20,9 +20,6 @@ namespace CMB
         bool addAnimation(const std::string key, std::vector<int> frames);
         bool removeAnimation(const std::string key);
 
-        // Test ...
-        void frameForward();
-        void frameBack();
 
     private:
         bool hasSetSpritesheet = false;
@@ -34,8 +31,6 @@ namespace CMB
         std::unordered_map<std::string, std::vector<int>> m_frames;
         sf::IntRect m_frame;
 
-        // void frameForward();
-        // void frameBack();
         void updateFrame();
     };
 } // namespace CMB

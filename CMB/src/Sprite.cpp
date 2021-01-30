@@ -28,37 +28,6 @@ namespace CMB
 
     // Private ...
 
-    void Sprite::frameForward()
-    {
-        if (!hasSetSpritesheet)
-        {
-            return;
-        }
-
-        m_frameIndex = (m_frameIndex + 1) % m_frameMax;
-
-        updateFrame();
-    }
-
-    void Sprite::frameBack()
-    {
-        if (!hasSetSpritesheet)
-        {
-            return;
-        }
-
-        if (m_frameIndex - 1 < 0)
-        {
-            m_frameIndex = m_frameMax - 1;
-        }
-        else
-        {
-            m_frameIndex--;
-        }
-
-        updateFrame();
-    }
-
     void Sprite::updateFrame()
     {
         // Is this too spenny ...
