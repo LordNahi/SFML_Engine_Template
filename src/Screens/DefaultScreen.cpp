@@ -6,7 +6,7 @@
 
 namespace CMB
 {
-    DefaultScreen::DefaultScreen(GameDataRef data) : _data(data)
+    DefaultScreen::DefaultScreen(GameDataRef game) : _game(game)
     {
     }
 
@@ -14,16 +14,13 @@ namespace CMB
     {
         std::cout << "Init Default..." << std::endl;
 
-        _data->assetManager.LoadTexture("default", "res/graphics/default.png");
-        _data->assetManager.LoadTexture("run_down", "res/graphics/run_down.png");
-        _data->assetManager.LoadTexture("test", "res/graphics/test.png");
+        _game->assetManager.LoadTexture("default", "res/graphics/default.png");
+        _game->assetManager.LoadTexture("run_down", "res/graphics/run_down.png");
+        _game->assetManager.LoadTexture("test", "res/graphics/test.png");
 
-        _defaultSprite.setTexture(this->_data->assetManager.GetTexture("test"));
+        _defaultSprite.setTexture(_game->assetManager.GetTexture("test"));
         _defaultSprite.setScale({7, 7});
         _defaultSprite.setSpritesheet(32, 32, 8);
-
-        _data->callbackManager.Register(
-            "changeFrame", [this]() { _defaultSprite.frameForward(); }, 500, true);
 
         const sf::FloatRect defaultBounds = _defaultSprite.getGlobalBounds();
 
@@ -34,11 +31,11 @@ namespace CMB
     {
         sf::Event event;
 
-        while (_data->window.pollEvent(event))
+        while (_game->window.pollEvent(event))
         {
             if (sf::Event::Closed == event.type)
             {
-                _data->window.close();
+                _game->window.close();
             }
         }
     }
@@ -46,13 +43,13 @@ namespace CMB
     void DefaultScreen::Update(float dt)
     {
         // Note: Example of adding a new state
-        // _data->stateManager.AddState(StateRef(new YourNewScreen(_data)), true);
+        // _game->stateManager.AddState(ScreenRef(new YourNewScreen(_game)), true);
     }
 
     void DefaultScreen::Draw(float dt)
     {
-        _data->window.clear(sf::Color{92, 219, 88, 255});
-        _data->window.draw(_defaultSprite);
-        _data->window.display();
+        _game->window.clear(sf::Color{92, 219, 88, 255});
+        _game->window.draw(_defaultSprite);
+        _game->window.display();
     }
 } // namespace CMB

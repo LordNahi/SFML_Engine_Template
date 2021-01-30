@@ -8,6 +8,7 @@
 #include "Managers/AssetManager.hpp"
 #include "Managers/CallbackManager.hpp"
 #include "GameConfig.hpp"
+#include "Sprite.hpp"
 
 namespace CMB
 {
@@ -25,12 +26,13 @@ namespace CMB
     {
     public:
         Game(int width, int height, std::string title);
+
         void Run();
 
     private:
         const double _targetFrameDuration = 1000 / TARGET_FPS;
         sf::Clock _clock;
 
-        GameDataRef _data = std::make_shared<GameData>();
+        GameDataRef _game = std::make_shared<GameData>();
     };
 } // namespace CMB

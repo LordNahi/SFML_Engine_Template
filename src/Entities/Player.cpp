@@ -4,9 +4,9 @@
 
 namespace CMB
 {
-    Player::Player(GameDataRef data) : _data(data)
+    Player::Player(GameDataRef data) : _game(data)
     {
-        setTexture(_data->assetManager.GetTexture("pepe"));
+        setTexture(_game->assetManager.GetTexture("pepe"));
         setOrigin(getGlobalBounds().width / 2, getGlobalBounds().height / 2);
     }
 

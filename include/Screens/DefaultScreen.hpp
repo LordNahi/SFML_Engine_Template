@@ -19,7 +19,7 @@ namespace CMB
         void Draw(float dt);
 
     private:
-        GameDataRef _data;
+        GameDataRef _game;
 
         sf::Clock _clock;
         CMB::Sprite _defaultSprite;

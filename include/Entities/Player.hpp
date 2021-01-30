@@ -12,6 +12,6 @@ namespace CMB
         void Init();
         void Update(float dt);
 
-        GameDataRef _data;
+        GameDataRef _game;
     };
 } // namespace CMB

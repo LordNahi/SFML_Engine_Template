@@ -17,9 +17,10 @@ namespace CMB
          * frame sizes and enable animation functionality.
          */
         bool setSpritesheet(const int &frameWidth, const int &frameHeight, const int &frameCount);
-        bool addAnimation(const std::string key, std::vector<int> frames);
-        bool removeAnimation(const std::string key);
-
+        void animationAdd(const std::string key, const std::vector<int> frames);
+        bool animationRemove(const std::string key);
+        bool animationPlay(const std::string key, const bool repeat);
+        bool animationStop(const std::string key);
 
     private:
         bool hasSetSpritesheet = false;
@@ -28,7 +29,7 @@ namespace CMB
         int m_frameWidth;
         int m_frameHeight;
 
-        std::unordered_map<std::string, std::vector<int>> m_frames;
+        std::unordered_map<std::string, std::vector<int>> m_anims;
         sf::IntRect m_frame;
 
         void updateFrame();

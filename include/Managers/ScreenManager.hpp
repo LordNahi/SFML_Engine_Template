@@ -7,20 +7,20 @@
 
 namespace CMB
 {
-    typedef std::unique_ptr<Screen> StateRef;
+    typedef std::unique_ptr<Screen> ScreenRef;
 
     class ScreenManager
     {
     public:
-        void AddState(StateRef newState, bool isReplacing = true);
-        void RemoveState();
-        void ProcessStateChanges();
+        void AddScreen(ScreenRef newScreen, bool isReplacing = true);
+        void RemoveScreen();
+        void ProcessScreenChanges();
 
-        StateRef &GetActiveState();
+        ScreenRef &GetActiveState();
 
     private:
-        std::stack<StateRef> _states;
-        StateRef _newState;
+        std::stack<ScreenRef> _states;
+        ScreenRef _newScreen;
 
         bool _isRemoving;
         bool _isAdding;

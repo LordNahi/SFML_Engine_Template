@@ -9,8 +9,8 @@ namespace CMB
 {
     Game::Game(int width, int height, std::string title)
     {
-        _data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-        _data->screenManager.AddState(StateRef(new DefaultScreen(_data)));
+        _game->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+        _game->screenManager.AddScreen(ScreenRef(new DefaultScreen(_game)));
     }
 
     void Game::Run()
@@ -21,10 +21,10 @@ namespace CMB
         int currentTime, interpolation;
         int previousTime = _clock.getElapsedTime().asMilliseconds();
 
-        while (_data->window.isOpen())
+        while (_game->window.isOpen())
         {
             // Begin by checking if we need to transition screen ...
-            _data->screenManager.ProcessStateChanges();
+            _game->screenManager.ProcessScreenChanges();
 
             // Calculate time taken to render last frame ...
             currentTime = _clock.getElapsedTime().asMilliseconds();
@@ -56,8 +56,8 @@ namespace CMB
             // Update loop ...
             while (accumulator >= _targetFrameDuration)
             {
-                _data->screenManager.GetActiveState()->HandleInput();
-                _data->screenManager.GetActiveState()->Update(_targetFrameDuration);
+                _game->screenManager.GetActiveState()->HandleInput();
+                _game->screenManager.GetActiveState()->Update(_targetFrameDuration);
 
                 accumulator -= _targetFrameDuration;
             }
@@ -72,7 +72,7 @@ namespace CMB
             // can instead run 500*interpolation to get more accurate rendering...
 
             interpolation = accumulator / _targetFrameDuration;
-            _data->screenManager.GetActiveState()->Draw(interpolation);
+            _game->screenManager.GetActiveState()->Draw(interpolation);
         }
     }
 } // namespace CMB

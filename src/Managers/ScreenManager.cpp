@@ -8,57 +8,57 @@ namespace CMB
      * This will tell the ScreenManager to add a new state or "screen"
      * to the world.
      * 
-     * @param newState state or "screen" object to be used in game
+     * @param newScreen screen to be used in game
      * @param isReplacing if true, the game will switch to this screen immediately
      */
-    void ScreenManager::AddState(StateRef newState, bool isReplacing)
+    void ScreenManager::AddScreen(ScreenRef newScreen, bool isReplacing)
     {
-        this->_isAdding = true;
-        this->_isReplacing = isReplacing;
-        this->_newState = std::move(newState);
+        _isAdding = true;
+        _isReplacing = isReplacing;
+        _newScreen = std::move(newScreen);
     }
 
-    void ScreenManager::RemoveState()
+    void ScreenManager::RemoveScreen()
     {
-        this->_isRemoving = true;
+        _isRemoving = true;
     }
 
-    void ScreenManager::ProcessStateChanges()
+    void ScreenManager::ProcessScreenChanges()
     {
-        if (this->_isRemoving && !this->_states.empty())
+        if (_isRemoving && !_states.empty())
         {
-            this->_states.pop();
+            _states.pop();
 
-            if (!this->_states.empty())
+            if (!_states.empty())
             {
-                this->_states.top()->Resume();
+                _states.top()->Resume();
             }
 
-            this->_isRemoving = false;
+            _isRemoving = false;
         }
 
-        if (this->_isAdding)
+        if (_isAdding)
         {
-            if (!this->_states.empty())
+            if (!_states.empty())
             {
-                if (this->_isReplacing)
+                if (_isReplacing)
                 {
-                    this->_states.pop();
+                    _states.pop();
                 }
                 else
                 {
-                    this->_states.top()->Pause();
+                    _states.top()->Pause();
                 }
             }
 
-            this->_states.push(std::move(this->_newState));
-            this->_states.top()->Init();
-            this->_isAdding = false;
+            _states.push(std::move(_newScreen));
+            _states.top()->Init();
+            _isAdding = false;
         }
     }
 
-    StateRef &ScreenManager::GetActiveState()
+    ScreenRef &ScreenManager::GetActiveState()
     {
-        return this->_states.top();
+        return _states.top();
     }
 } // namespace CMB

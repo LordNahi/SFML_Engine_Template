@@ -12,13 +12,13 @@ namespace CMB
 
         if (tex.loadFromFile(filePath))
         {
-            this->_textures[name] = tex;
+            _textures[name] = tex;
         }
     }
 
     sf::Texture &AssetManager::GetTexture(std::string name)
     {
-        return this->_textures.at(name);
+        return _textures.at(name);
     }
 
     void AssetManager::LoadFont(std::string name, std::string filePath)
@@ -27,13 +27,13 @@ namespace CMB
 
         if (fnt.loadFromFile(filePath))
         {
-            this->_fonts[name] = fnt;
+            _fonts[name] = fnt;
             std::cout << "Font Loaded Successfully!" << std::endl;
         }
     }
 
     sf::Font &AssetManager::GetFont(std::string name)
     {
-        return this->_fonts.at(name);
+        return _fonts.at(name);
     }
 } // namespace CMB
