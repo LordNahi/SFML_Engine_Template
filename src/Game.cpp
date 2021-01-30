@@ -15,40 +15,51 @@ namespace CMB
 
     void Game::Run()
     {
-        int frameTime, currentTime, interpolation;
+        double previousFrameDuration = 0;
+        double accumulator = 0;
 
+        int currentTime, interpolation;
         int previousTime = _clock.getElapsedTime().asMilliseconds();
-        int accumulator = 0;
 
         while (_data->window.isOpen())
         {
+            // Begin by checking if we need to transition screen ...
             _data->screenManager.ProcessStateChanges();
 
+            // Calculate time taken to render last frame ...
             currentTime = _clock.getElapsedTime().asMilliseconds();
-            frameTime = currentTime - previousTime;
+            previousFrameDuration = currentTime - previousTime;
 
             /**
-             * Here we clamp the max frame time (milliseconds) to prevent slow PCs
-             * spending too long in the Update loop. We will need to save time for
-             * the drawing phase ...
+             * Here we clamp the max update duration (milliseconds) to prevent slow PCs
+             * spending too long in the Update loop and move onto drawing something
+             * to the screen.
+             * 
+             * `maxUpdateDuration`, measured in ms, determines how much the update
+             * loop will be allowed to catch up before a new frame is drawn.
+             * 
+             * The idea here being that if the game begins to do expensive draw operations
+             * and the time spent drawing exceeds our `_targetFrameDuration`, we handle
+             * input then update our game logic negate, _targetFrameDuration from the
+             * accumulator and continue drawing ...
              **/
-            const int maxFrameTime = 250;
-            if (frameTime > maxFrameTime)
+            const int maxUpdateDuration = 250;
+            if (previousFrameDuration > maxUpdateDuration)
             {
-                frameTime = maxFrameTime;
+                previousFrameDuration = maxUpdateDuration;
             }
 
             // previousTime reset
             previousTime = currentTime;
-            accumulator += frameTime;
+            accumulator += previousFrameDuration;
 
             // Update loop ...
-            while (accumulator >= dt)
+            while (accumulator >= _targetFrameDuration)
             {
                 _data->screenManager.GetActiveState()->HandleInput();
-                _data->screenManager.GetActiveState()->Update(dt);
+                _data->screenManager.GetActiveState()->Update(_targetFrameDuration);
 
-                accumulator -= dt;
+                accumulator -= _targetFrameDuration;
             }
 
             // Interpolation is calculated to be used in "Far Seeing", essentially
@@ -60,7 +71,7 @@ namespace CMB
             // we can render objects. If we have a movement speed of 500px per frame, we
             // can instead run 500*interpolation to get more accurate rendering...
 
-            interpolation = accumulator / dt;
+            interpolation = accumulator / _targetFrameDuration;
             _data->screenManager.GetActiveState()->Draw(interpolation);
         }
     }

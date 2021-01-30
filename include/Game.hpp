@@ -28,7 +28,7 @@ namespace CMB
         void Run();
 
     private:
-        const double dt = 1000 / TARGET_FPS;
+        const double _targetFrameDuration = 1000 / TARGET_FPS;
         sf::Clock _clock;
 
         GameDataRef _data = std::make_shared<GameData>();
