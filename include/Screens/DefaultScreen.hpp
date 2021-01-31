@@ -3,25 +3,22 @@
 #include <SFML/Graphics.hpp>
 
 #include "Screen.hpp"
-#include "Sprite.hpp"
 #include "Game.hpp"
+#include "Entities/Player.hpp"
 
 namespace CMB
 {
     class DefaultScreen : public Screen
     {
     public:
-        DefaultScreen(GameDataRef data);
+        DefaultScreen(GameDataRef game);
 
         void Init();
-        void HandleInput();
         void Update(float dt);
         void Draw(float dt);
 
     private:
         GameDataRef _game;
-
-        sf::Clock _clock;
-        CMB::Sprite _defaultSprite;
+        Player _player;
     };
 } // namespace CMB

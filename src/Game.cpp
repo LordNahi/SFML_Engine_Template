@@ -36,8 +36,6 @@ namespace CMB
 
         while (_game->window.isOpen())
         {
-            HandleWindowEvent();
-
             // Begin by checking if we need to transition screen ...
             _game->screenManager.ProcessScreenChanges();
 
@@ -71,7 +69,6 @@ namespace CMB
             // Update loop ...
             while (accumulator >= _targetFrameDuration)
             {
-                _game->screenManager.GetActiveState()->HandleInput();
                 _game->screenManager.GetActiveState()->Update(_targetFrameDuration / 100);
 
                 accumulator -= _targetFrameDuration;
@@ -88,6 +85,8 @@ namespace CMB
 
             interpolation = accumulator / _targetFrameDuration;
             _game->screenManager.GetActiveState()->Draw(interpolation);
+
+            HandleWindowEvent();
         }
     }
 } // namespace CMB
