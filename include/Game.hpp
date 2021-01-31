@@ -8,7 +8,6 @@
 #include "Managers/AssetManager.hpp"
 #include "Managers/CallbackManager.hpp"
 #include "GameConfig.hpp"
-#include "Sprite.hpp"
 
 namespace CMB
 {
@@ -26,7 +25,7 @@ namespace CMB
     {
     public:
         Game(int width, int height, std::string title);
-
+        void HandleWindowEvent();
         void Run();
 
     private:

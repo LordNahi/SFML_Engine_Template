@@ -13,6 +13,19 @@ namespace CMB
         _game->screenManager.AddScreen(ScreenRef(new DefaultScreen(_game)));
     }
 
+    void Game::HandleWindowEvent()
+    {
+        sf::Event event;
+
+        while (_game->window.pollEvent(event))
+        {
+            if (sf::Event::Closed == event.type)
+            {
+                _game->window.close();
+            }
+        }
+    }
+
     void Game::Run()
     {
         double previousFrameDuration = 0;
@@ -23,6 +36,8 @@ namespace CMB
 
         while (_game->window.isOpen())
         {
+            HandleWindowEvent();
+
             // Begin by checking if we need to transition screen ...
             _game->screenManager.ProcessScreenChanges();
 
