@@ -1,3 +1,5 @@
+#pragma once
+
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
@@ -5,30 +7,32 @@
 
 namespace CMB
 {
+    typedef std::pair<std::string, std::vector<int>> Anim;
+
     class Sprite : public sf::Sprite
     {
     public:
         using sf::Sprite::Sprite;
 
-        /**
-         * Tell Sprite it is being used with a spritesheet.
-         * 
-         * Calling this will splice the images into specified
-         * frame sizes and enable animation functionality.
-         */
+        void update(float dt);
         bool setSpritesheet(const int &frameWidth, const int &frameHeight, const int &frameCount);
         void animationAdd(const std::string key, const std::vector<int> frames);
-        bool animationRemove(const std::string key);
-        bool animationPlay(const std::string key, const bool repeat);
-        bool animationStop(const std::string key);
+        void animationRemove(const std::string key);
+        void animationPlay(const std::string key, const int speed, const bool repeat);
+        void animationStop();
 
     private:
         bool hasSetSpritesheet = false;
-        int m_frameMax;
-        int m_frameIndex;
-        int m_frameWidth;
-        int m_frameHeight;
+        int m_frameMax = 0;
+        int m_frameIndex = 0;
+        int m_frameWidth = 0;
+        int m_frameHeight = 0;
 
+        sf::Clock m_animClock;
+        int m_animSpeed = 0;
+        int m_animFrameIndex = 0;
+        bool m_animRepeat = true;
+        Anim m_activeAnim = {"", {}};
         std::unordered_map<std::string, std::vector<int>> m_anims;
         sf::IntRect m_frame;
 

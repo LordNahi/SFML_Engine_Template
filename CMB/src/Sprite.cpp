@@ -1,11 +1,69 @@
 #include <cmath>
 #include <iostream>
+#include <cstdlib>
+#include <thread>
+#include <chrono>
 
 #include "Sprite.hpp"
 
 namespace CMB
 {
     // Public ...
+
+    void Sprite::update(float dt)
+    {
+        // Animation ...
+
+        if (m_activeAnim.first != "" && !m_activeAnim.second.empty())
+        {
+            const auto frames = m_activeAnim.second;
+
+            if (m_animClock.getElapsedTime().asMilliseconds() > 1000 / m_animSpeed)
+            {
+                std::cout << "Anim tick" << std::endl;
+                std::cout << "Anim Index: " << m_animFrameIndex << std::endl;
+
+                m_animFrameIndex = (m_animFrameIndex + 1) % frames.size();
+                m_frameIndex = m_animFrameIndex;
+
+                updateFrame();
+
+                m_animClock.restart();
+
+                if (m_animFrameIndex == frames.size() - 1 && !m_animRepeat)
+                {
+                    animationStop();
+                }
+            }
+        }
+    }
+
+    void Sprite::animationAdd(const std::string key, const std::vector<int> frames)
+    {
+        m_anims.insert_or_assign(key, frames);
+    }
+
+    void Sprite::animationRemove(const std::string key)
+    {
+        m_anims.erase(key);
+    }
+
+    void Sprite::animationPlay(const std::string key, const int speed, const bool repeat = true)
+    {
+        const auto result = m_anims.find(key);
+
+        if (result != m_anims.end())
+        {
+            m_animSpeed = speed;
+            m_animRepeat = repeat;
+            m_activeAnim = {result->first, result->second};
+        }
+    }
+
+    void Sprite::animationStop()
+    {
+        m_activeAnim = {"", {}};
+    }
 
     bool Sprite::setSpritesheet(const int &frameWidth, const int &frameHeight, const int &frameCount)
     {
