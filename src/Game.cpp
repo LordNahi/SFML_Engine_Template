@@ -72,7 +72,7 @@ namespace CMB
             while (accumulator >= _targetFrameDuration)
             {
                 _game->screenManager.GetActiveState()->HandleInput();
-                _game->screenManager.GetActiveState()->Update(_targetFrameDuration);
+                _game->screenManager.GetActiveState()->Update(_targetFrameDuration / 100);
 
                 accumulator -= _targetFrameDuration;
             }
