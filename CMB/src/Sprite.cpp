@@ -63,6 +63,9 @@ namespace CMB
     void Sprite::animationStop()
     {
         m_activeAnim = {"", {}};
+        m_frameIndex = 0;
+
+        updateFrame();
     }
 
     bool Sprite::setSpritesheet(const int &frameWidth, const int &frameHeight, const int &frameCount)
