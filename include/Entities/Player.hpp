@@ -16,7 +16,7 @@ namespace CMB
         void create();
         void update(float dt);
 
-        sf::Vector2i _movementVec;
+        sf::Vector2i _movementVec{0, 0};
         GameDataRef _game;
     };
 } // namespace CMB
