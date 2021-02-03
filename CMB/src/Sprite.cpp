@@ -20,9 +20,6 @@ namespace CMB
 
             if (m_animClock.getElapsedTime().asMilliseconds() > 1000 / m_animSpeed)
             {
-                std::cout << "Anim tick" << std::endl;
-                std::cout << "Anim Index: " << m_animFrameIndex << std::endl;
-
                 m_animFrameIndex = (m_animFrameIndex + 1) % frames.size();
                 m_frameIndex = m_animFrameIndex;
 
