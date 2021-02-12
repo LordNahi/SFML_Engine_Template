@@ -18,6 +18,7 @@ conan_cmake_run(
   REQUIRES
   ${CONAN_EXTRA_REQUIRES}
   sfml/2.5.1@bincrafters/stable
+  fmt/7.1.3
   OPTIONS
   ${CONAN_EXTRA_OPTIONS}
   BASIC_SETUP
