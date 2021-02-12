@@ -1,10 +1,15 @@
 #include <iostream>
 
+#include "GameConfig.hpp"
 #include "Managers/AssetManager.hpp"
 
 namespace CMB
 {
-    // TODO: Create a default asset to return for each asset type...
+    AssetManager::AssetManager()
+    {
+        // Load necessary default assets ...
+        _defaultTexture.loadFromFile(SPRITE_DEFAULT);
+    }
 
     void AssetManager::LoadTexture(std::string name, std::string filePath)
     {
@@ -18,7 +23,16 @@ namespace CMB
 
     sf::Texture &AssetManager::GetTexture(std::string name)
     {
-        return _textures.at(name);
+        const auto result = _textures.find(name);
+
+        if (result != _textures.end())
+        {
+            return _textures.at(name);
+        }
+        else
+        {
+            return _defaultTexture;
+        }
     }
 
     void AssetManager::LoadFont(std::string name, std::string filePath)
@@ -28,7 +42,6 @@ namespace CMB
         if (fnt.loadFromFile(filePath))
         {
             _fonts[name] = fnt;
-            std::cout << "Font Loaded Successfully!" << std::endl;
         }
     }
 

@@ -9,8 +9,8 @@ namespace CMB
     class AssetManager
     {
     public:
-        AssetManager() {}
-        ~AssetManager() {}
+        AssetManager();
+        ~AssetManager() = default;
 
         void LoadTexture(std::string name, std::string filePath);
         sf::Texture &GetTexture(std::string name);
@@ -19,6 +19,8 @@ namespace CMB
         sf::Font &GetFont(std::string name);
 
     private:
+        sf::Texture _defaultTexture;
+
         std::map<std::string, sf::Texture> _textures;
         std::map<std::string, sf::Font> _fonts;
     };
