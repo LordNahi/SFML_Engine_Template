@@ -7,7 +7,7 @@
 
 namespace CMB
 {
-    class Player : public Sprite
+    class Player
     {
     public:
         Player() = default;
@@ -15,8 +15,13 @@ namespace CMB
 
         void create();
         void update(float dt);
+        void draw(float dt);
+        void updatePosition(float dt);
 
-        sf::Vector2i _movementVec{0, 0};
-        GameDataRef _game;
+    private:
+        Sprite m_body;
+        Sprite m_legs;
+        sf::Vector2i m_movementVec{0, 0};
+        GameDataRef m_game;
     };
 } // namespace CMB

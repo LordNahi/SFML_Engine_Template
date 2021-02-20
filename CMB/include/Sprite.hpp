@@ -12,9 +12,7 @@ namespace CMB
     class Sprite : public sf::Sprite
     {
     public:
-        using sf::Sprite::Sprite;
-
-        void update(float dt);
+        virtual void update(float dt);
         bool setSpritesheet(const int &frameWidth, const int &frameHeight, const int &frameCount);
         void animationAdd(const std::string key, const std::vector<int> frames);
         void animationRemove(const std::string key);

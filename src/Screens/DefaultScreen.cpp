@@ -12,17 +12,26 @@ namespace CMB
 
     void DefaultScreen::Init()
     {
-        std::cout << "Init Default..." << std::endl;
+        std::cout << "Init Default Screen ..." << std::endl;
 
-        _game->assetManager.LoadTexture("run_up", "res/graphics/run_up.png");
-        _game->assetManager.LoadTexture("run_down", "res/graphics/run_down.png");
-        _game->assetManager.LoadTexture("run_left", "res/graphics/run_left.png");
-        _game->assetManager.LoadTexture("run_right", "res/graphics/run_right.png");
+        // Load image assets ...
+        // TODO: This will eventually move to a loading screen ...
+        // TODO: Consider making asset packages that can be loaded in groups
+        // when needed, packs will be set up in a loading screen then loaded
+        // in and out on different screens ...
+
+        // Player Body ...
+        _game->assetManager.LoadTexture("body_walk_up", "res/graphics/player/body_walk_up.png");
+        _game->assetManager.LoadTexture("body_walk_down", "res/graphics/player/body_walk_down.png");
+        _game->assetManager.LoadTexture("body_walk_left", "res/graphics/player/body_walk_left.png");
+        _game->assetManager.LoadTexture("body_walk_right", "res/graphics/player/body_walk_right.png");
+
+        // Player Legs ...
+        _game->assetManager.LoadTexture("legs_walk_horizontal", "res/graphics/player/legs_walk_horizontal.png");
+        _game->assetManager.LoadTexture("legs_walk_vertical", "res/graphics/player/legs_walk_vertical.png");
 
         // Player ...
         _player = Player{_game};
-        _player.setPosition({SCREEN_WIDTH / 2 - _player.getGlobalBounds().width / 2,
-                             SCREEN_HEIGHT / 2 - _player.getGlobalBounds().height / 2});
     }
 
     void DefaultScreen::Update(float dt)
@@ -33,7 +42,7 @@ namespace CMB
     void DefaultScreen::Draw(float dt)
     {
         _game->window.clear(sf::Color{92, 219, 88, 255});
-        _game->window.draw(_player);
+        _player.draw(dt);
         _game->window.display();
     }
 } // namespace CMB

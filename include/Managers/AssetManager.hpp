@@ -1,6 +1,6 @@
 #pragma once
 
-#include <map>
+#include <unordered_map>
 #include <string>
 #include <SFML/Graphics.hpp>
 
@@ -21,7 +21,7 @@ namespace CMB
     private:
         sf::Texture _defaultTexture;
 
-        std::map<std::string, sf::Texture> _textures;
-        std::map<std::string, sf::Font> _fonts;
+        std::unordered_map<std::string, sf::Texture> _textures;
+        std::unordered_map<std::string, sf::Font> _fonts;
     };
 } // namespace CMB

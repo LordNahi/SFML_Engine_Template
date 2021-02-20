@@ -23,9 +23,7 @@ namespace CMB
 
     sf::Texture &AssetManager::GetTexture(std::string name)
     {
-        const auto result = _textures.find(name);
-
-        if (result != _textures.end())
+        if (_textures.contains(name))
         {
             return _textures.at(name);
         }

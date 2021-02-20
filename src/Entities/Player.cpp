@@ -1,70 +1,110 @@
 #include <algorithm>
 
 #include "Entities/Player.hpp"
+#include "GameConfig.hpp"
 
 namespace CMB
 {
-    Player::Player(GameDataRef game) : _game(game)
+    Player::Player(GameDataRef game) : m_game(game)
     {
-        setTexture(_game->assetManager.GetTexture("run_down"));
-        setScale({4, 4});
-        setSpritesheet(32, 32, 4);
+        // Setup body ...
+        m_body.setTexture(m_game->assetManager.GetTexture("run_down"));
+        m_body.setScale({GAME_SCALE, GAME_SCALE});
+        m_body.setSpritesheet(32, 32, 4);
+        m_body.animationAdd("walk", {0, 1, 2, 3});
+        m_body.setOrigin(m_body.getLocalBounds().width / 2.0f, 0);
 
-        animationAdd("walk", {0, 1, 2, 3});
+        // Setup legs ...
+        m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_vertical"));
+        m_legs.setScale({4, 4});
+        m_legs.setSpritesheet(32, 32, 4);
+        m_legs.animationAdd("walk", {0, 1, 2, 3});
+        m_legs.setOrigin(m_legs.getLocalBounds().width / 2.0f, 0);
+
+        // Set initial position ...
+        m_body.setPosition({SCREEN_WIDTH / 2 - m_body.getGlobalBounds().width / 2,
+                            SCREEN_HEIGHT / 2 - m_body.getGlobalBounds().height / 2});
     }
 
     void Player::update(float dt)
     {
-        Sprite::update(dt);
-
-        const int speed = 15 * dt;
-        auto position = getPosition();
-
-        // Movement ...
-        // TODO: Fix classic diagonal speed issue ...
+        m_body.update(dt);
+        m_legs.update(dt);
 
         // Reset movement vec ...
-        _movementVec = {0, 0};
+        m_movementVec = {0, 0};
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-            setTexture(_game->assetManager.GetTexture("run_left"));
-            _movementVec.x = -1;
+            m_body.setTexture(m_game->assetManager.GetTexture("body_walk_left"));
+            m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_horizontal"));
+            m_legs.setScale({GAME_SCALE, GAME_SCALE});
+
+            m_movementVec.x = -1;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
-            setTexture(_game->assetManager.GetTexture("run_right"));
-            _movementVec.x = 1;
+            m_body.setTexture(m_game->assetManager.GetTexture("body_walk_right"));
+            m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_horizontal"));
+            m_legs.setScale({-GAME_SCALE, GAME_SCALE});
+
+            m_movementVec.x = 1;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
-            setTexture(_game->assetManager.GetTexture("run_up"));
-            _movementVec.y = -1;
+            m_body.setTexture(m_game->assetManager.GetTexture("body_walk_up"));
+            m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_vertical"));
+
+            m_movementVec.y = -1;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
-            setTexture(_game->assetManager.GetTexture("run_down"));
-            _movementVec.y = 1;
+            m_body.setTexture(m_game->assetManager.GetTexture("body_walk_down"));
+            m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_vertical"));
+
+            m_movementVec.y = 1;
         }
 
-        if (_movementVec.x != 0 || _movementVec.y != 0)
+        updatePosition(dt);
+    }
+
+    void Player::draw(float dt)
+    {
+        m_game->window.draw(m_legs);
+        m_game->window.draw(m_body);
+    }
+
+    void Player::updatePosition(float dt)
+    {
+        // TODO: Fix classic diagonal speed issue ...
+
+        const int speed = 15 * dt;
+        auto position = m_body.getPosition();
+
+        if (m_movementVec.x != 0 || m_movementVec.y != 0)
         {
             // Moving ...
-            animationPlay("walk", 8, true);
+            m_body.animationPlay("walk", 8, true);
+            m_legs.animationPlay("walk", 8, true);
 
             const int speed = 15;
-            const float xx = speed * dt * _movementVec.x;
-            const float yy = speed * dt * _movementVec.y;
+            const float xx = speed * dt * m_movementVec.x;
+            const float yy = speed * dt * m_movementVec.y;
 
             position.x += xx;
             position.y += yy;
+
+            // TODO: Consider createing a group class where you
+            // can move multiple sprites as a unit ...
+
+            m_body.setPosition(position);
+            m_legs.setPosition(m_body.getPosition());
         }
         else
         {
-            animationStop();
+            m_body.animationStop();
+            m_legs.animationStop();
         }
-
-        setPosition(position);
     }
 
 } // namespace CMB
