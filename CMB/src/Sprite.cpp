@@ -21,7 +21,7 @@ namespace CMB
             if (m_animClock.getElapsedTime().asMilliseconds() > 1000 / m_animSpeed)
             {
                 m_animFrameIndex = (m_animFrameIndex + 1) % frames.size();
-                m_frameIndex = m_animFrameIndex;
+                m_frameIndex = frames[m_animFrameIndex];
 
                 updateFrame();
 
