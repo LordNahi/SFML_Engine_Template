@@ -8,10 +8,9 @@ namespace CMB
     Player::Player(GameDataRef game) : m_game(game)
     {
         // Setup body ...
-        m_body.setTexture(m_game->assetManager.GetTexture("run_down"));
+        m_body.setTexture(m_game->assetManager.GetTexture("body_lowered"));
         m_body.setScale({GAME_SCALE, GAME_SCALE});
-        m_body.setSpritesheet(32, 32, 4);
-        m_body.animationAdd("walk", {0, 1, 2, 3});
+        m_body.setSpritesheet(32, 32, 8);
         m_body.setOrigin(m_body.getLocalBounds().width / 2.0f, 0);
 
         // Setup legs ...
@@ -24,6 +23,7 @@ namespace CMB
         // Set initial position ...
         m_body.setPosition({SCREEN_WIDTH / 2 - m_body.getGlobalBounds().width / 2,
                             SCREEN_HEIGHT / 2 - m_body.getGlobalBounds().height / 2});
+        m_legs.setPosition(m_body.getPosition());
     }
 
     void Player::update(float dt)
@@ -36,7 +36,7 @@ namespace CMB
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-            m_body.setTexture(m_game->assetManager.GetTexture("body_walk_left"));
+            // m_body.setTexture(m_game->assetManager.GetTexture("body_walk_left"));
             m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_horizontal"));
             m_legs.setScale({GAME_SCALE, GAME_SCALE});
 
@@ -44,7 +44,7 @@ namespace CMB
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
-            m_body.setTexture(m_game->assetManager.GetTexture("body_walk_right"));
+            // m_body.setTexture(m_game->assetManager.GetTexture("body_walk_right"));
             m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_horizontal"));
             m_legs.setScale({-GAME_SCALE, GAME_SCALE});
 
@@ -52,17 +52,22 @@ namespace CMB
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
-            m_body.setTexture(m_game->assetManager.GetTexture("body_walk_up"));
+            // m_body.setTexture(m_game->assetManager.GetTexture("body_walk_up"));
             m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_vertical"));
 
             m_movementVec.y = -1;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
-            m_body.setTexture(m_game->assetManager.GetTexture("body_walk_down"));
+            // m_body.setTexture(m_game->assetManager.GetTexture("body_walk_down"));
             m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_vertical"));
 
             m_movementVec.y = 1;
+        }
+
+        if (m_movementVec.x == 0 && m_movementVec.y == 0)
+        {
+            m_legs.animationStop();
         }
 
         updatePosition(dt);
@@ -84,7 +89,7 @@ namespace CMB
         if (m_movementVec.x != 0 || m_movementVec.y != 0)
         {
             // Moving ...
-            m_body.animationPlay("walk", 8, true);
+            // m_body.animationPlay("walk", 8, true);
             m_legs.animationPlay("walk", 8, true);
 
             const int speed = 15;
@@ -99,11 +104,6 @@ namespace CMB
 
             m_body.setPosition(position);
             m_legs.setPosition(m_body.getPosition());
-        }
-        else
-        {
-            m_body.animationStop();
-            m_legs.animationStop();
         }
     }
 

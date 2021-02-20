@@ -21,6 +21,7 @@ namespace CMB
         // in and out on different screens ...
 
         // Player Body ...
+        _game->assetManager.LoadTexture("body_lowered", "res/graphics/player/body_lowered.png");
         _game->assetManager.LoadTexture("body_walk_up", "res/graphics/player/body_walk_up.png");
         _game->assetManager.LoadTexture("body_walk_down", "res/graphics/player/body_walk_down.png");
         _game->assetManager.LoadTexture("body_walk_left", "res/graphics/player/body_walk_left.png");
