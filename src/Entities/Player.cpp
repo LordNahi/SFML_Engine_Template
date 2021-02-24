@@ -121,7 +121,6 @@ namespace CMB
         // Convert to world position ...
         const sf::Vector2f worldMousePos = m_game->window.mapPixelToCoords(mousePos);
 
-        // Casting to satisfy `getAngleBetween` needs ...
         const auto angleVec = sf::Vector2f{
             worldMousePos.x,
             worldMousePos.y};
