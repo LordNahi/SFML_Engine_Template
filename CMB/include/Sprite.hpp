@@ -13,11 +13,14 @@ namespace CMB
     {
     public:
         virtual void update(float dt);
-        bool setSpritesheet(const int &frameWidth, const int &frameHeight, const int &frameCount);
         void animationAdd(const std::string key, const std::vector<int> frames);
         void animationRemove(const std::string key);
         void animationPlay(const std::string key, const int speed, const bool repeat);
         void animationStop();
+        bool setSpritesheet(const int &frameWidth, const int &frameHeight, const int &frameCount);
+        void setFrameIndex(const int index);
+        Anim getActiveAnim();
+        int getNumFrames();
 
     private:
         bool hasSetSpritesheet = false;

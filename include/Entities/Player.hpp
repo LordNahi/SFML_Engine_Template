@@ -9,6 +9,8 @@ namespace CMB
 {
     class Player
     {
+        friend class Sprite;
+
     public:
         Player() = default;
         Player(GameDataRef game);
@@ -16,12 +18,14 @@ namespace CMB
         void create();
         void update(float dt);
         void draw(float dt);
-        void updatePosition(float dt);
 
     private:
         Sprite m_body;
         Sprite m_legs;
         sf::Vector2i m_movementVec{0, 0};
         GameDataRef m_game;
+
+        void setBodyAngle();
+        void updatePosition(float dt);
     };
 } // namespace CMB

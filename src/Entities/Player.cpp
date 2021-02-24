@@ -1,7 +1,9 @@
+#include <cmath>
 #include <algorithm>
 
 #include "Entities/Player.hpp"
 #include "GameConfig.hpp"
+#include "Util.hpp"
 
 namespace CMB
 {
@@ -30,6 +32,8 @@ namespace CMB
     {
         m_body.update(dt);
         m_legs.update(dt);
+
+        setBodyAngle();
 
         // Reset movement vec ...
         m_movementVec = {0, 0};
@@ -89,7 +93,6 @@ namespace CMB
         if (m_movementVec.x != 0 || m_movementVec.y != 0)
         {
             // Moving ...
-            // m_body.animationPlay("walk", 8, true);
             m_legs.animationPlay("walk", 8, true);
 
             const int speed = 15;
@@ -107,4 +110,26 @@ namespace CMB
         }
     }
 
+    void Player::setBodyAngle()
+    {
+        // Ideally player's exact center, this will do for now ...
+        const sf::Vector2f legPos = m_legs.getPosition();
+
+        // Get Mouse position in window ...
+        const sf::Vector2i mousePos = sf::Mouse::getPosition(m_game->window);
+
+        // Convert to world position ...
+        const sf::Vector2f worldMousePos = m_game->window.mapPixelToCoords(mousePos);
+
+        // Casting to satisfy `getAngleBetween` needs ...
+        const auto angleVec = sf::Vector2f{
+            worldMousePos.x,
+            worldMousePos.y};
+
+        const float angle = Util::Math::Trig::getAngleBetween(legPos, angleVec);
+
+        const int index = static_cast<int>((angle / 360.0f) * m_body.getNumFrames());
+
+        m_body.setFrameIndex(index);
+    }
 } // namespace CMB

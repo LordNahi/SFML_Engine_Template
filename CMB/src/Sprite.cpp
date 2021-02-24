@@ -84,6 +84,22 @@ namespace CMB
         return true;
     }
 
+    void Sprite::setFrameIndex(const int index)
+    {
+        m_frameIndex = index;
+        updateFrame();
+    }
+
+    Anim Sprite::getActiveAnim()
+    {
+        return m_activeAnim;
+    }
+
+    int Sprite::getNumFrames()
+    {
+        return m_frameMax;
+    }
+
     // Private ...
 
     void Sprite::updateFrame()
