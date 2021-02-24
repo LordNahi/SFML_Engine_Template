@@ -33,5 +33,6 @@ namespace CMB
         sf::Clock _clock;
 
         GameDataRef _game = std::make_shared<GameData>();
+        sf::View _gameView;
     };
 } // namespace CMB

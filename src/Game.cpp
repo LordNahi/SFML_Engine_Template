@@ -9,7 +9,14 @@ namespace CMB
 {
     Game::Game(int width, int height, std::string title)
     {
+        // TODO: When it comes to setting up cameras, read over this again ...
+        // https://www.sfml-dev.org/tutorials/2.5/graphics-view.php
+
+        // Set initial view to window dimensions ...
+        _gameView.setSize(width, height);
+
         _game->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+        _game->window.setView(_gameView);
         _game->screenManager.AddScreen(ScreenRef(new DefaultScreen(_game)));
     }
 
