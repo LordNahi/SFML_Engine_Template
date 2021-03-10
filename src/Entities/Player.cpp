@@ -112,23 +112,25 @@ namespace CMB
 
     void Player::setBodyAngle()
     {
+        const int numDirections = 8;
+        const float sectorAngle = 360.f / numDirections;
+
         // Ideally player's exact center, this will do for now ...
         const sf::Vector2f legPos = m_legs.getPosition();
 
-        // Get Mouse position in window ...
-        const sf::Vector2i mousePos = sf::Mouse::getPosition(m_game->window);
-
         // Convert to world position ...
+        const sf::Vector2i mousePos = sf::Mouse::getPosition(m_game->window);
         const sf::Vector2f worldMousePos = m_game->window.mapPixelToCoords(mousePos);
 
         const auto angleVec = sf::Vector2f{
             worldMousePos.x,
             worldMousePos.y};
 
-        const float angle = Util::Math::Trig::getAngleBetween(legPos, angleVec);
+        const float angleOffset = sectorAngle / 2;
+        const float angle = Util::Math::Trig::getAngleBetween(legPos, angleVec) + angleOffset;
 
         const int index = static_cast<int>((angle / 360.0f) * m_body.getNumFrames());
 
-        m_body.setFrameIndex(index);
+        m_body.setFrameIndex(index % numDirections);
     }
 } // namespace CMB
