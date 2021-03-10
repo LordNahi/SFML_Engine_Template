@@ -10,7 +10,7 @@ namespace CMB
     Player::Player(GameDataRef game) : m_game(game)
     {
         // Setup body ...
-        m_body.setTexture(m_game->assetManager.GetTexture("body_lowered"));
+        m_body.setTexture(m_game->assetManager.GetTexture("body_raised"));
         m_body.setScale({GAME_SCALE, GAME_SCALE});
         m_body.setSpritesheet(32, 32, 8);
         m_body.setOrigin(m_body.getLocalBounds().width / 2.0f, 0);

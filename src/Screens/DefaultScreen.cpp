@@ -22,10 +22,7 @@ namespace CMB
 
         // Player Body ...
         _game->assetManager.LoadTexture("body_lowered", "res/graphics/player/body_lowered.png");
-        _game->assetManager.LoadTexture("body_walk_up", "res/graphics/player/body_walk_up.png");
-        _game->assetManager.LoadTexture("body_walk_down", "res/graphics/player/body_walk_down.png");
-        _game->assetManager.LoadTexture("body_walk_left", "res/graphics/player/body_walk_left.png");
-        _game->assetManager.LoadTexture("body_walk_right", "res/graphics/player/body_walk_right.png");
+        _game->assetManager.LoadTexture("body_raised", "res/graphics/player/body_raised.png");
 
         // Player Legs ...
         _game->assetManager.LoadTexture("legs_walk_horizontal", "res/graphics/player/legs_walk_horizontal.png");
