@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-#include <algorithms>
+#include <algorithm>
 #include <bitset>
 #include <array>
 
@@ -10,9 +10,9 @@ class Component;
 
 using ComponentID = std::size_t;
 
-inline ComponentID getComponentTypeID();
+inline ComponentID getComponentTypeID()
 {
-    static ComponentID lastID = 0;
+    static ComponentID lastId = 0;
     return lastId++;
 }
 
@@ -37,7 +37,7 @@ class Component
         virtual void draw() {}
 
         virtual ~Component() {}
-}
+};
 
 class Entity
 {
@@ -51,7 +51,7 @@ class Entity
             for (auto& c : components) c->draw();
         }
         bool getIsActive() const { return isActive; }
-        void destroy() const { active = false; }
+        void destroy() { isActive = false; }
 
         template <typename T> bool hasComponent() const
         {
@@ -86,7 +86,7 @@ class Entity
 
         ComponentArray componentArray;
         ComponentBitSet componentBitSet;
-}
+};
 
 class Manager
 {
@@ -102,7 +102,7 @@ class Manager
         void refresh()
         {
             entities.erase(std::remove_if(std::begin(entities), std::end(entities),
-                [](const std::unique_ptr<Entitiy> &mEntity)
+                [](const std::unique_ptr<Entity> &mEntity)
                 {
                     return !mEntity->getIsActive();
                 }),
@@ -112,11 +112,11 @@ class Manager
         {
             Entity* e = new Entity();
             std::unique_ptr<Entity> uPtr{ e };
-            entities.emplace_back(std::move(uPrt));
+            entities.emplace_back(std::move(uPtr));
 
             return *e;
         }
 
     private:
         std::vector<std::unique_ptr<Entity>> entities;
-}
+};
