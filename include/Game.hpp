@@ -7,6 +7,7 @@
 #include "Managers/ScreenManager.hpp"
 #include "Managers/AssetManager.hpp"
 #include "Managers/CallbackManager.hpp"
+#include "Manager.hpp"
 #include "GameConfig.hpp"
 
 namespace CMB
@@ -17,6 +18,7 @@ namespace CMB
         ScreenManager screenManager;
         AssetManager assetManager;
         CallbackManager callbackManager;
+        ECS::Manager ECSManager;
     };
 
     using GameDataRef = std::shared_ptr<GameData>;

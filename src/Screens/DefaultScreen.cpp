@@ -34,13 +34,13 @@ namespace CMB
 
     void DefaultScreen::Update(float dt)
     {
-        _player.update(dt);
+        _game->ECSManager.update(dt);
     }
 
     void DefaultScreen::Draw(float dt)
     {
         _game->window.clear(sf::Color{92, 219, 88, 255});
-        _player.draw(dt);
+        _game->ECSManager.draw(dt);
         _game->window.display();
     }
 } // namespace CMB
