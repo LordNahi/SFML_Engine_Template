@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "Screen.hpp"
-#include "Game.hpp"
 #include "Entities/Player.hpp"
 
 namespace CMB
