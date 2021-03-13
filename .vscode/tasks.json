@@ -8,21 +8,25 @@
             "type": "shell",
             "command": "cd build && cmake ..",
             "presentation": {
-                "reveal": "silent",
                 "focus": false,
                 "showReuseMessage": false,
                 "clear": true
-            }
+            },
+            "problemMatcher": []
         },
         {
             "label": "Build",
             "type": "shell",
             "command": "cd build && cmake --build .",
             "presentation": {
-                "reveal": "silent",
                 "focus": false,
                 "showReuseMessage": false,
                 "clear": true
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
             }
         },
         {
@@ -30,7 +34,6 @@
             "type": "shell",
             "command": "cd build/bin && ./SFML_template",
             "presentation": {
-                "reveal": "silent",
                 "focus": false,
                 "showReuseMessage": false,
                 "clear": true
