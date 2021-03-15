@@ -38,27 +38,27 @@ namespace CMB
         // Reset movement vec ...
         m_movementVec = {0, 0};
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         {
             m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_horizontal"));
             m_legs.setScale({GAME_SCALE, GAME_SCALE});
 
             m_movementVec.x = -1;
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
             m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_horizontal"));
             m_legs.setScale({-GAME_SCALE, GAME_SCALE});
 
             m_movementVec.x = 1;
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
         {
             m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_vertical"));
 
             m_movementVec.y = -1;
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         {
             m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_vertical"));
 
