@@ -40,7 +40,6 @@ namespace CMB
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-            // m_body.setTexture(m_game->assetManager.GetTexture("body_walk_left"));
             m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_horizontal"));
             m_legs.setScale({GAME_SCALE, GAME_SCALE});
 
@@ -48,7 +47,6 @@ namespace CMB
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
-            // m_body.setTexture(m_game->assetManager.GetTexture("body_walk_right"));
             m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_horizontal"));
             m_legs.setScale({-GAME_SCALE, GAME_SCALE});
 
@@ -56,14 +54,12 @@ namespace CMB
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
-            // m_body.setTexture(m_game->assetManager.GetTexture("body_walk_up"));
             m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_vertical"));
 
             m_movementVec.y = -1;
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
-            // m_body.setTexture(m_game->assetManager.GetTexture("body_walk_down"));
             m_legs.setTexture(m_game->assetManager.GetTexture("legs_walk_vertical"));
 
             m_movementVec.y = 1;
