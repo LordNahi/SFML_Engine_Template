@@ -1,6 +1,8 @@
 
 # Building with CMake (Linux)
 
+This project is an experimental playground used for learning SFML.
+
 ## Requirements
 * conan
 * cmake
